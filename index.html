@@ -9,13 +9,14 @@
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <style>
   :root {
-    --blue: #F59E0B;
-    --blue-soft: #fbbf24;
-    --bg: #2b1f42;
-    --panel: #37295a;
-    --text: #f2f4f8;
-    --muted: #b7b0c8;
-    --border: #4f3d75;
+    --blue: #FF7A00;       /* naranja principal del logo */
+    --blue-soft: #FFB020;  /* amarillo anaranjado de las puntas */
+    --fire: linear-gradient(180deg, #FFB020 0%, #FF7A00 55%, #FF4D00 100%);
+    --bg: #0b0809;
+    --panel: #171012;
+    --text: #f5f0eb;
+    --muted: #b8aaa2;
+    --border: #3a2620;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -27,7 +28,7 @@
 
   .glow {
     position: fixed; inset: -20% -10% auto -10%; height: 90vh;
-    background: radial-gradient(closest-side, rgba(245,158,11,.30), transparent 70%);
+    background: radial-gradient(closest-side, rgba(255,122,0,.30), transparent 70%);
     filter: blur(40px); pointer-events: none; z-index: 0;
     animation: drift 14s ease-in-out infinite alternate;
   }
@@ -38,12 +39,12 @@
   .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; }
   .eyebrow {
     display: inline-block; font-size: .8rem; letter-spacing: .14em; text-transform: uppercase;
-    color: var(--blue-soft); border: 1px solid rgba(245,158,11,.5); border-radius: 999px;
-    padding: 6px 14px; margin-bottom: 22px; box-shadow: 0 0 18px rgba(245,158,11,.25);
+    color: var(--blue-soft); border: 1px solid rgba(255,122,0,.5); border-radius: 999px;
+    padding: 6px 14px; margin-bottom: 22px; box-shadow: 0 0 18px rgba(255,122,0,.25);
   }
   header h1 { font-size: clamp(2.6rem, 5vw, 4.4rem); line-height: 1.02; font-weight: 800; letter-spacing: -.02em; max-width: 680px; }
   .gradient {
-    background: linear-gradient(90deg, #fff 0%, var(--blue-soft) 55%, var(--blue) 100%);
+    background: linear-gradient(90deg, var(--blue-soft) 0%, var(--blue) 55%, #FF4D00 100%);
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
   header p { color: var(--muted); font-size: 1.15rem; max-width: 620px; margin-top: 18px; }
@@ -52,8 +53,8 @@
     display: inline-block; text-decoration: none; padding: 14px 26px; border-radius: 10px;
     font-weight: 700; transition: transform .2s, box-shadow .2s, background .2s, color .2s; font: inherit;
   }
-  .btn-primary { background: var(--blue); color: #1a1200; box-shadow: 0 0 28px rgba(245,158,11,.55); }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(245,158,11,.8); }
+  .btn-primary { background: var(--fire); color: #1a0800; box-shadow: 0 0 28px rgba(255,122,0,.55); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(255,122,0,.8); }
   .btn-ghost { color: var(--text); border: 1px solid var(--border); }
   .btn-ghost:hover { border-color: var(--blue); color: var(--blue-soft); }
 
@@ -77,11 +78,11 @@
     background: var(--panel); border: 1px solid var(--border); border-radius: 16px;
     padding: 26px; transition: transform .25s, border-color .25s, box-shadow .25s;
   }
-  .card:hover { transform: translateY(-4px); border-color: var(--blue); box-shadow: 0 0 34px rgba(245,158,11,.25); }
+  .card:hover { transform: translateY(-4px); border-color: var(--blue); box-shadow: 0 0 34px rgba(255,122,0,.25); }
   .services { display: grid; gap: 16px; }
   .icon {
     width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
-    background: rgba(245,158,11,.15); color: var(--blue-soft); font-size: 1.3rem; margin-bottom: 16px;
+    background: rgba(255,122,0,.15); color: var(--blue-soft); font-size: 1.3rem; margin-bottom: 16px;
   }
   .card h3 { margin-bottom: 8px; font-size: 1.15rem; }
   .card p { color: var(--muted); font-size: .97rem; }
@@ -92,7 +93,7 @@
   .project { display: flex; flex-direction: column; gap: 16px; }
   .tag {
     align-self: flex-start; font-size: .75rem; font-weight: 700; color: var(--blue-soft);
-    background: rgba(245,158,11,.12); border-radius: 999px; padding: 4px 12px;
+    background: rgba(255,122,0,.12); border-radius: 999px; padding: 4px 12px;
   }
   .project h3 { font-size: 1.15rem; }
   .project p { color: var(--muted); font-size: .92rem; }
@@ -104,7 +105,7 @@
   }
   .mock {
     border-radius: 12px; min-height: 170px; border: 1px solid var(--border);
-    background: radial-gradient(circle at 30% 20%, rgba(245,158,11,.40), transparent 60%), #241a3a;
+    background: radial-gradient(circle at 30% 20%, rgba(255,122,0,.35), transparent 60%), #1a1012;
     display: grid; place-items: center; color: var(--muted); font-size: .85rem; margin-top: auto;
   }
 
@@ -116,7 +117,7 @@
     background: var(--bg); border: 1px solid var(--border); color: var(--text);
     padding: 12px 14px; border-radius: 10px; font: inherit; outline: none;
   }
-  .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { border-color: var(--blue); box-shadow: 0 0 14px rgba(245,158,11,.35); }
+  .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { border-color: var(--blue); box-shadow: 0 0 14px rgba(255,122,0,.35); }
   .contact-form button { border: none; cursor: pointer; font: inherit; justify-self: center; }
   .hint { color: var(--muted); font-size: .8rem; text-align: center; }
   .stars { display: flex; gap: 6px; justify-content: center; }
@@ -128,9 +129,9 @@
   .about { padding: 72px 0; border-top: 1px solid var(--border); }
   .about p { color: var(--muted); max-width: 760px; margin-bottom: 14px; font-size: 1.05rem; }
   .contact-box {
-    background: linear-gradient(135deg, rgba(245,158,11,.22), rgba(0,0,0,0) 70%), var(--panel);
-    border: 1px solid rgba(245,158,11,.5); border-radius: 20px; padding: 48px 36px; text-align: center;
-    box-shadow: 0 0 60px rgba(245,158,11,.18);
+    background: linear-gradient(135deg, rgba(255,122,0,.22), rgba(0,0,0,0) 70%), var(--panel);
+    border: 1px solid rgba(255,122,0,.5); border-radius: 20px; padding: 48px 36px; text-align: center;
+    box-shadow: 0 0 60px rgba(255,122,0,.18);
   }
   .contact-box h2 { margin-bottom: 12px; }
   .contact-box > p { color: var(--muted); margin-bottom: 28px; }
@@ -140,10 +141,10 @@
   .wa-float {
     position: fixed; right: 22px; bottom: 22px; z-index: 5;
     width: 60px; height: 60px; border-radius: 50%;
-    background: var(--blue); color: #1a1200; display: grid; place-items: center;
-    box-shadow: 0 0 28px rgba(245,158,11,.6); transition: transform .2s, box-shadow .2s;
+    background: var(--fire); color: #1a0800; display: grid; place-items: center;
+    box-shadow: 0 0 28px rgba(255,122,0,.6); transition: transform .2s, box-shadow .2s;
   }
-  .wa-float:hover { transform: scale(1.08); box-shadow: 0 0 44px rgba(245,158,11,.9); }
+  .wa-float:hover { transform: scale(1.08); box-shadow: 0 0 44px rgba(255,122,0,.9); }
   .wa-float svg { width: 30px; height: 30px; }
 
   footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--muted); font-size: .85rem; text-align: center; }
@@ -158,7 +159,7 @@
   .privacy-check a { color: var(--blue-soft); }
   .privacy { position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,.7); backdrop-filter: blur(4px); display: none; overflow-y: auto; padding: 60px 16px; }
   .privacy.open { display: block; }
-  .privacy .container { background: var(--panel); border: 1px solid var(--border); border-radius: 20px; padding: 40px 36px; max-width: 760px; position: relative; box-shadow: 0 0 60px rgba(245,158,11,.18); }
+  .privacy .container { background: var(--panel); border: 1px solid var(--border); border-radius: 20px; padding: 40px 36px; max-width: 760px; position: relative; box-shadow: 0 0 60px rgba(255,122,0,.18); }
   .close-privacy { position: absolute; top: 14px; right: 18px; background: none; border: none; color: var(--text); font-size: 2rem; line-height: 1; cursor: pointer; }
   .close-privacy:hover { color: var(--blue-soft); }
   .privacy h2 { font-size: 1.8rem; margin-bottom: 18px; }
@@ -168,7 +169,7 @@
   .project { cursor: pointer; }
   .pmodal { position: fixed; inset: 0; z-index: 120; background: rgba(0,0,0,.7); backdrop-filter: blur(4px); display: none; align-items: flex-start; justify-content: center; padding: 50px 16px; overflow-y: auto; }
   .pmodal.open { display: flex; }
-  .pbox { background: var(--panel); border: 1px solid var(--border); border-radius: 20px; padding: 40px; width: min(980px, 100%); position: relative; box-shadow: 0 0 60px rgba(245,158,11,.18); }
+  .pbox { background: var(--panel); border: 1px solid var(--border); border-radius: 20px; padding: 40px; width: min(980px, 100%); position: relative; box-shadow: 0 0 60px rgba(255,122,0,.18); }
   .pclose { position: absolute; top: 14px; right: 18px; background: none; border: none; color: var(--text); font-size: 2rem; line-height: 1; cursor: pointer; }
   .pclose:hover { color: var(--blue-soft); }
   .pbox h3 { font-size: 1.6rem; margin-bottom: 12px; }
@@ -179,13 +180,23 @@
   .pbox .mock { min-height: 300px; }
   .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
   .gallery .mock { min-height: 240px; }
+  .shot {
+    display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top;
+    border-radius: 12px; border: 1px solid var(--border); margin-top: auto; background: #1a1012;
+  }
+  .pbox > .pcontent .shot { aspect-ratio: auto; }
+  .gallery a { display: block; border-radius: 12px; transition: transform .2s, box-shadow .2s; }
+  .gallery a:hover { transform: translateY(-3px); box-shadow: 0 0 26px rgba(255,122,0,.3); }
+  .gallery .shot { margin-top: 0; }
+  .pbox .lead { color: var(--text); font-size: 1.05rem; }
+  .pbox h4 { font-size: 1rem; margin: 22px 0 8px; color: var(--blue-soft); }
   #servicios .card { cursor: pointer; }
-  .topbar { position: sticky; top: 0; z-index: 50; background: rgba(43,31,66,.85); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+  .topbar { position: sticky; top: 0; z-index: 50; background: rgba(11,8,9,.85); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
   .topbar-in { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; padding-bottom: 14px; }
   .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; }
-  .logo { width: 40px; height: 40px; border-radius: 10px; display: block; object-fit: cover; border: 1px solid rgba(245,158,11,.45); box-shadow: 0 0 18px rgba(245,158,11,.45); }
+  .logo { width: 40px; height: 40px; border-radius: 10px; display: block; object-fit: cover; border: 1px solid rgba(255,122,0,.45); box-shadow: 0 0 18px rgba(255,122,0,.45); }
   .footer-brand { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-  .footer-logo { width: 56px; height: 56px; border-radius: 14px; border: 1px solid rgba(245,158,11,.4); box-shadow: 0 0 24px rgba(245,158,11,.35); }
+  .footer-logo { width: 56px; height: 56px; border-radius: 14px; border: 1px solid rgba(255,122,0,.4); box-shadow: 0 0 24px rgba(255,122,0,.35); }
   footer a { color: var(--blue-soft); }
   .topbar a { color: var(--muted); text-decoration: none; font-size: .9rem; margin-left: 18px; }
   .topbar a:hover { color: var(--blue-soft); }
@@ -285,7 +296,12 @@
           <li>Agenda accesible desde el móvil de cada trabajadora.</li>
           <li>Preparada para VeriFactu.</li>
         </ul>
-        <div class="mock">[ captura de la app ]</div>
+        <img class="shot" src="img/capturas/app-caja.jpg" alt="Pantalla de caja de la app de gestión" loading="lazy">
+        <template class="extra">
+          <a href="img/capturas/app-nueva-cita.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/app-nueva-cita.jpg" alt="Formulario de nueva cita" loading="lazy"></a>
+          <a href="img/capturas/app-caja-color.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/app-caja-color.jpg" alt="Caja con los servicios de color" loading="lazy"></a>
+          <a href="img/capturas/app-trabajadoras.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/app-trabajadoras.jpg" alt="Listado de trabajadoras" loading="lazy"></a>
+        </template>
       </article>
       <article class="card project reveal">
         <span class="tag">Web</span>
@@ -295,7 +311,12 @@
           <li>Los clientes reservan desde cualquier móvil u ordenador.</li>
           <li>Las citas llegan directamente a la agenda de las trabajadoras.</li>
         </ul>
-        <div class="mock">[ captura de la web de reservas ]</div>
+        <img class="shot" src="img/capturas/reservas-inicio.jpg" alt="Portada de la web de reservas de la peluquería" loading="lazy">
+        <template class="extra">
+          <a href="img/capturas/reservas-servicios.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/reservas-servicios.jpg" alt="Servicios y precios por sección" loading="lazy"></a>
+          <a href="img/capturas/reservas-galeria.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/reservas-galeria.jpg" alt="Galería y opiniones de Google" loading="lazy"></a>
+          <a href="img/capturas/reservas-cita.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/reservas-cita.jpg" alt="Formulario para pedir cita online" loading="lazy"></a>
+        </template>
       </article>
       <article class="card project reveal">
         <span class="tag">Web</span>
@@ -305,7 +326,12 @@
           <li>Diseño limpio y adaptado a móvil.</li>
           <li>Tecnología: HTML y CSS.</li>
         </ul>
-        <div class="mock">[ captura de la web ]</div>
+        <img class="shot" src="img/capturas/dietetica-inicio.jpg" alt="Portada de la web de nutrición y dietética" loading="lazy">
+        <template class="extra">
+          <a href="img/capturas/dietetica-servicios.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/dietetica-servicios.jpg" alt="Sección de servicios" loading="lazy"></a>
+          <a href="img/capturas/dietetica-proceso.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/dietetica-proceso.jpg" alt="Cómo es el proceso de trabajo" loading="lazy"></a>
+          <a href="img/capturas/dietetica-resenas.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/dietetica-resenas.jpg" alt="Sección de reseñas" loading="lazy"></a>
+        </template>
       </article>
     </div>
   </div>
@@ -363,7 +389,7 @@
         <div class="links">
         <a class="btn btn-primary" href="https://wa.me/34640169734?text=Hola%2C%20te%20he%20visto%20por%20la%20web%20y%20me%20gustar%C3%ADa%20hacer%20un%20proyecto%20contigo." target="_blank" rel="noopener">WhatsApp</a>
         <a class="btn btn-ghost" href="mailto:ignaciog2006@gmail.com">Escribirme por email</a>
-        <a class="btn btn-ghost" href="https://www.malt.es/" target="_blank" rel="noopener">Malt</a>
+        <a class="btn btn-ghost" href="https://www.malt.com/profile/ignaciogarrido" target="_blank" rel="noopener">Malt</a>
       </div>
     </div>
   </div>
@@ -396,11 +422,7 @@
     <button type="button" class="pclose" aria-label="Cerrar">×</button>
     <div class="pcontent"></div>
     <p class="label" style="margin-top: 28px;">Más capturas</p>
-    <div class="gallery">
-      <div class="mock">[ captura 1 ]</div>
-      <div class="mock">[ captura 2 ]</div>
-      <div class="mock">[ captura 3 ]</div>
-    </div>
+    <div class="gallery"></div>
   </div>
 </div>
 
@@ -441,6 +463,8 @@
   const closeProject = () => { pm.classList.remove('open'); document.body.style.overflow = ''; };
   document.querySelectorAll('.project').forEach((card) => card.addEventListener('click', () => {
     pm.querySelector('.pcontent').innerHTML = card.innerHTML;
+    const extra = card.querySelector('template.extra');
+    pm.querySelector('.gallery').innerHTML = extra ? extra.innerHTML : '';
     pm.classList.add('open');
     document.body.style.overflow = 'hidden';
   }));
@@ -449,9 +473,30 @@
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeProject(); });
 
   const details = [
-    '<h3>Aplicaciones de gestión</h3><p>Programas a medida para organizar el día a día de tu negocio: citas, stock, caja, personal o facturación.</p><ul><li>Primero entiendo cómo trabajas y qué tareas quieres quitarte de encima.</li><li>Diseño la aplicación con una interfaz sencilla para tu equipo.</li><li>La pruebo contigo y la ajusto hasta que encaje con tu forma de trabajar.</li></ul>',
-    '<h3>Webs y reservas online</h3><p>Una web clara que da confianza y, si lo necesitas, un sistema de reservas conectado a tu agenda.</p><ul><li>Diseño adaptado a móvil y a ordenador.</li><li>Las reservas aparecen directamente en tu agenda, sin trabajo duplicado.</li><li>Textos y estructura pensados para que el cliente encuentre lo que busca.</li></ul>',
-    '<h3>Mantenimiento y mejoras</h3><p>Me encargo de que tu aplicación o web siga funcionando bien con el paso del tiempo.</p><ul><li>Corrijo errores y actualizo lo que haga falta.</li><li>Añado funciones nuevas cuando tu negocio las necesite.</li><li>Resuelvo las dudas que surjan en el día a día.</li></ul>'
+    '<h3>Aplicaciones de gestión</h3>' +
+    '<p class="lead">Si tu negocio todavía funciona con libretas, hojas de Excel que nadie entiende o mil mensajes de WhatsApp, seguramente estás perdiendo horas cada semana sin darte cuenta.</p>' +
+    '<p>Hago aplicaciones pensadas para tu forma de trabajar, no al revés. Nada de programas genéricos llenos de botones que no vas a usar: solo lo que de verdad necesitas, colocado donde esperas encontrarlo.</p>' +
+    '<h4>¿Qué puede hacer por ti?</h4>' +
+    '<ul><li>Llevar la agenda de citas de todo el equipo en un solo sitio, también desde el móvil.</li><li>Controlar la caja del día y los cierres sin descuadres ni papeles sueltos.</li><li>Saber qué productos te quedan antes de que se acaben.</li><li>Gestionar horarios, vacaciones y fichajes de tu personal.</li><li>Sacar informes para ver cómo va el negocio de un vistazo.</li></ul>' +
+    '<h4>Cómo trabajo</h4>' +
+    '<p>Antes de escribir una sola línea de código me siento contigo (o te llamo) para entender cómo es tu día a día y qué te quita más tiempo. Después te enseño versiones a medida que avanzo, para que puedas decirme "esto sí, esto no" desde el principio. Y cuando la app está lista, no desaparezco: me quedo para que tu equipo se sienta cómodo usándola.</p>' +
+    '<p>Un ejemplo real: la app que hice para una peluquería, con agenda, caja, stock y control del personal, conectada a su web de reservas.</p>',
+
+    '<h3>Webs y reservas online</h3>' +
+    '<p class="lead">Hoy, antes de llamarte o pasarse por tu local, la mayoría de la gente te busca en internet. Tu web es lo primero que ven de ti, y tiene que transmitir confianza en pocos segundos.</p>' +
+    '<p>Diseño webs claras, rápidas y que se ven bien en el móvil, que es desde donde te va a visitar casi todo el mundo. Sin plantillas recargadas: una web con la personalidad de tu negocio y con la información que tus clientes buscan a mano.</p>' +
+    '<h4>Reservas que llegan solas</h4>' +
+    '<p>Si trabajas con citas, puedo añadir un sistema de reservas online conectado directamente a tu agenda. El cliente elige servicio, día y hora libre, y la cita aparece al momento en tu calendario. Sin llamadas a deshoras, sin apuntar nada dos veces y sin citas que se pisan.</p>' +
+    '<h4>Lo que incluye</h4>' +
+    '<ul><li>Diseño a medida, adaptado a móvil, tablet y ordenador.</li><li>Textos ordenados para que el cliente encuentre rápido lo que busca: servicios, precios, horario y contacto.</li><li>Botón de WhatsApp, formulario de contacto y mapa si los necesitas.</li><li>Ayuda para publicarla y ponerla en marcha con tu dominio.</li></ul>' +
+    '<p>Puedes ver dos ejemplos en mis proyectos: la web de reservas de una peluquería y la web de una nutricionista.</p>',
+
+    '<h3>Mantenimiento y mejoras</h3>' +
+    '<p class="lead">Una web o una aplicación no se termina el día que se entrega. El negocio cambia, aparecen ideas nuevas y, de vez en cuando, algo deja de funcionar como debería.</p>' +
+    '<p>Para eso estoy. Me encargo de que lo que ya tienes siga funcionando bien, tanto si lo hice yo como si viene de otra persona. Antes de tocar nada, reviso cómo está hecho para no romper lo que ya funciona.</p>' +
+    '<h4>En qué te puedo ayudar</h4>' +
+    '<ul><li>Arreglar errores y fallos que te estén dando guerra.</li><li>Cambiar precios, textos, fotos o servicios cuando lo necesites.</li><li>Añadir funciones nuevas: una sección más, un formulario, un informe, una conexión con otra herramienta...</li><li>Mantenerlo todo actualizado y con copias de seguridad.</li><li>Resolverte dudas del día a día sin tecnicismos.</li></ul>' +
+    '<p>Si ya tienes una web o una app y no sabes por dónde empezar, cuéntame qué te pasa y lo vemos juntos, sin compromiso.</p>'
   ];
   const svcModal = document.getElementById('servicio-modal');
   const closeSvc = () => { svcModal.classList.remove('open'); document.body.style.overflow = ''; };
