@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ignacio Garrido · Desarrollador de apps y webs</title>
+<meta name="description" content="Desarrollo de apps y webs a medida. Proyectos reales y contacto.">
+<style>
+  :root {
+    --blue: #F59E0B;
+    --blue-soft: #fbbf24;
+    --bg: #2b1f42;
+    --panel: #37295a;
+    --text: #f2f4f8;
+    --muted: #b7b0c8;
+    --border: #4f3d75;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden;
+  }
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+
+  .glow {
+    position: fixed; inset: -20% -10% auto -10%; height: 90vh;
+    background: radial-gradient(closest-side, rgba(245,158,11,.30), transparent 70%);
+    filter: blur(40px); pointer-events: none; z-index: 0;
+    animation: drift 14s ease-in-out infinite alternate;
+  }
+  @keyframes drift { to { transform: translate(60px, 30px) scale(1.1); } }
+
+  /* Cabecera */
+  header { padding: 90px 0 70px; }
+  .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; }
+  .eyebrow {
+    display: inline-block; font-size: .8rem; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--blue-soft); border: 1px solid rgba(245,158,11,.5); border-radius: 999px;
+    padding: 6px 14px; margin-bottom: 22px; box-shadow: 0 0 18px rgba(245,158,11,.25);
+  }
+  header h1 { font-size: clamp(2.6rem, 5vw, 4.4rem); line-height: 1.02; font-weight: 800; letter-spacing: -.02em; max-width: 680px; }
+  .gradient {
+    background: linear-gradient(90deg, #fff 0%, var(--blue-soft) 55%, var(--blue) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  header p { color: var(--muted); font-size: 1.15rem; max-width: 620px; margin-top: 18px; }
+  .btn-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; text-decoration: none; padding: 14px 26px; border-radius: 10px;
+    font-weight: 700; transition: transform .2s, box-shadow .2s, background .2s, color .2s; font: inherit;
+  }
+  .btn-primary { background: var(--blue); color: #1a1200; box-shadow: 0 0 28px rgba(245,158,11,.55); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(245,158,11,.8); }
+  .btn-ghost { color: var(--text); border: 1px solid var(--border); }
+  .btn-ghost:hover { border-color: var(--blue); color: var(--blue-soft); }
+
+  /* Herramientas */
+  .stack {
+    display: flex; flex-wrap: wrap; gap: 10px; padding: 26px 0;
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  }
+  .stack span {
+    font-size: .85rem; color: var(--muted); background: var(--panel);
+    border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px;
+  }
+
+  /* Dos columnas: servicios a la izquierda, proyectos a la derecha */
+  .layout { display: grid; grid-template-columns: 1fr 2.2fr; gap: 48px; padding: 72px 0; align-items: start; }
+  @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+  .label { color: var(--blue-soft); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 10px; }
+  h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; letter-spacing: -.01em; margin-bottom: 26px; }
+
+  .card {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 16px;
+    padding: 26px; transition: transform .25s, border-color .25s, box-shadow .25s;
+  }
+  .card:hover { transform: translateY(-4px); border-color: var(--blue); box-shadow: 0 0 34px rgba(245,158,11,.25); }
+  .services { display: grid; gap: 16px; }
+  .icon {
+    width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+    background: rgba(245,158,11,.15); color: var(--blue-soft); font-size: 1.3rem; margin-bottom: 16px;
+  }
+  .card h3 { margin-bottom: 8px; font-size: 1.15rem; }
+  .card p { color: var(--muted); font-size: .97rem; }
+
+  .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: stretch; }
+  @media (max-width: 1000px) { .projects { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 760px) { .projects { grid-template-columns: 1fr; } }
+  .project { display: flex; flex-direction: column; gap: 16px; }
+  .tag {
+    align-self: flex-start; font-size: .75rem; font-weight: 700; color: var(--blue-soft);
+    background: rgba(245,158,11,.12); border-radius: 999px; padding: 4px 12px;
+  }
+  .project h3 { font-size: 1.15rem; }
+  .project p { color: var(--muted); font-size: .92rem; }
+  .project ul { list-style: none; color: var(--muted); font-size: .9rem; }
+  .project li { padding-left: 20px; position: relative; margin-bottom: 6px; }
+  .project li::before {
+    content: ""; position: absolute; left: 0; top: .55em; width: 7px; height: 7px;
+    border-radius: 50%; background: var(--blue); box-shadow: 0 0 10px var(--blue);
+  }
+  .mock {
+    border-radius: 12px; min-height: 170px; border: 1px solid var(--border);
+    background: radial-gradient(circle at 30% 20%, rgba(245,158,11,.40), transparent 60%), #241a3a;
+    display: grid; place-items: center; color: var(--muted); font-size: .85rem; margin-top: auto;
+  }
+
+  /* Reseñas */
+  .reseñas-wrap { padding: 72px 0; border-top: 1px solid var(--border); }
+  .empty { color: var(--muted); text-align: center; margin-bottom: 28px; }
+  .contact-form { max-width: 560px; margin: 0 auto 28px; display: grid; gap: 12px; text-align: left; }
+  .contact-form input, .contact-form select, .contact-form textarea {
+    background: var(--bg); border: 1px solid var(--border); color: var(--text);
+    padding: 12px 14px; border-radius: 10px; font: inherit; outline: none;
+  }
+  .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { border-color: var(--blue); box-shadow: 0 0 14px rgba(245,158,11,.35); }
+  .contact-form button { border: none; cursor: pointer; font: inherit; justify-self: center; }
+  .hint { color: var(--muted); font-size: .8rem; text-align: center; }
+  .stars { display: flex; gap: 6px; justify-content: center; }
+  .stars button { background: none; border: none; font-size: 2rem; color: var(--border); cursor: pointer; transition: color .15s, transform .15s; }
+  .stars button:hover { transform: scale(1.15); }
+  .stars button.on { color: var(--blue); }
+
+  /* Sobre mí y contacto */
+  .about { padding: 72px 0; border-top: 1px solid var(--border); }
+  .about p { color: var(--muted); max-width: 760px; margin-bottom: 14px; font-size: 1.05rem; }
+  .contact-box {
+    background: linear-gradient(135deg, rgba(245,158,11,.22), rgba(0,0,0,0) 70%), var(--panel);
+    border: 1px solid rgba(245,158,11,.5); border-radius: 20px; padding: 48px 36px; text-align: center;
+    box-shadow: 0 0 60px rgba(245,158,11,.18);
+  }
+  .contact-box h2 { margin-bottom: 12px; }
+  .contact-box > p { color: var(--muted); margin-bottom: 28px; }
+  .links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .links-box { margin-top: 24px; }
+
+  .wa-float {
+    position: fixed; right: 22px; bottom: 22px; z-index: 5;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: var(--blue); color: #1a1200; display: grid; place-items: center;
+    box-shadow: 0 0 28px rgba(245,158,11,.6); transition: transform .2s, box-shadow .2s;
+  }
+  .wa-float:hover { transform: scale(1.08); box-shadow: 0 0 44px rgba(245,158,11,.9); }
+  .wa-float svg { width: 30px; height: 30px; }
+
+  footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--muted); font-size: .85rem; text-align: center; }
+
+  /* Animaciones al hacer scroll */
+  .reveal { opacity: 0; transform: translateY(40px) scale(.98); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal:nth-child(2) { transition-delay: .12s; }
+  .reveal:nth-child(3) { transition-delay: .24s; }
+  .privacy-check { display: flex; gap: 10px; align-items: flex-start; font-size: .85rem; color: var(--muted); text-align: left; }
+  .privacy-check input { width: auto; padding: 0; margin-top: 4px; accent-color: var(--blue); }
+  .privacy-check a { color: var(--blue-soft); }
+  .privacy { position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,.7); backdrop-filter: blur(4px); display: none; overflow-y: auto; padding: 60px 16px; }
+  .privacy.open { display: block; }
+  .privacy .container { background: var(--panel); border: 1px solid var(--border); border-radius: 20px; padding: 40px 36px; max-width: 760px; position: relative; box-shadow: 0 0 60px rgba(245,158,11,.18); }
+  .close-privacy { position: absolute; top: 14px; right: 18px; background: none; border: none; color: var(--text); font-size: 2rem; line-height: 1; cursor: pointer; }
+  .close-privacy:hover { color: var(--blue-soft); }
+  .privacy h2 { font-size: 1.8rem; margin-bottom: 18px; }
+  .privacy h3 { font-size: 1.05rem; margin: 22px 0 6px; }
+  .privacy p { color: var(--muted); margin-bottom: 10px; max-width: 800px; }
+  .privacy a { color: var(--blue-soft); }
+  .project { cursor: pointer; }
+  .pmodal { position: fixed; inset: 0; z-index: 120; background: rgba(0,0,0,.7); backdrop-filter: blur(4px); display: none; align-items: flex-start; justify-content: center; padding: 50px 16px; overflow-y: auto; }
+  .pmodal.open { display: flex; }
+  .pbox { background: var(--panel); border: 1px solid var(--border); border-radius: 20px; padding: 40px; width: min(980px, 100%); position: relative; box-shadow: 0 0 60px rgba(245,158,11,.18); }
+  .pclose { position: absolute; top: 14px; right: 18px; background: none; border: none; color: var(--text); font-size: 2rem; line-height: 1; cursor: pointer; }
+  .pclose:hover { color: var(--blue-soft); }
+  .pbox h3 { font-size: 1.6rem; margin-bottom: 12px; }
+  .pbox p { color: var(--muted); margin-bottom: 14px; }
+  .pbox ul { list-style: none; color: var(--muted); margin-bottom: 24px; }
+  .pbox li { padding-left: 20px; position: relative; margin-bottom: 8px; }
+  .pbox li::before { content: ""; position: absolute; left: 0; top: .55em; width: 7px; height: 7px; border-radius: 50%; background: var(--blue); }
+  .pbox .mock { min-height: 300px; }
+  .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .gallery .mock { min-height: 240px; }
+  #servicios .card { cursor: pointer; }
+  .topbar { position: sticky; top: 0; z-index: 50; background: rgba(43,31,66,.85); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+  .topbar-in { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; padding-bottom: 14px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; }
+  .logo { width: 34px; height: 34px; border-radius: 9px; background: var(--blue); color: #1a1200; display: grid; place-items: center; font-family: monospace; font-weight: 800; box-shadow: 0 0 18px rgba(245,158,11,.5); }
+  .topbar a { color: var(--muted); text-decoration: none; font-size: .9rem; margin-left: 18px; }
+  .topbar a:hover { color: var(--blue-soft); }
+  @media (max-width: 640px) {
+    .container { padding: 0 18px; }
+    header { padding: 56px 0 44px; }
+    header h1 { font-size: 2.2rem; }
+    .btn-row { width: 100%; }
+    .btn-row .btn { flex: 1 1 auto; text-align: center; }
+    .btn { padding: 12px 18px; }
+    .layout { padding: 48px 0; gap: 36px; }
+    .stack { padding: 20px 0; }
+    section { padding: 56px 0; }
+    .reseñas-wrap, .about { padding: 56px 0; }
+    .contact-box { padding: 32px 20px; }
+    .contact-box h2 { font-size: 1.6rem; }
+    .pmodal { padding: 24px 10px; }
+    .pbox { padding: 28px 20px; }
+    .pbox h3 { font-size: 1.3rem; }
+    .pbox .mock { min-height: 200px; }
+    .gallery .mock { min-height: 160px; }
+    .stars button { font-size: 1.7rem; }
+    .privacy .container { padding: 30px 20px; }
+    .wa-float { width: 54px; height: 54px; right: 16px; bottom: 16px; }
+    .topbar a { margin-left: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="glow"></div>
+
+<nav class="topbar">
+  <div class="container topbar-in">
+    <span class="brand"><span class="logo">&lt;/&gt;</span>Ignacio Garrido</span>
+    <div>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="container">
+    <span class="eyebrow">Disponible para proyectos</span>
+    <div class="head">
+      <div>
+        <h1>Apps y webs <span class="gradient">a medida</span> para tu negocio</h1>
+        <p>Diseño y desarrollo aplicaciones de gestión y sitios web rápidos, claros y fáciles de usar. Convierto procesos manuales en herramientas que funcionan solas.</p>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#contacto">Hablemos de tu proyecto</a>
+        <a class="btn btn-ghost" href="#proyectos">Ver proyectos</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="stack">
+    <span>C#</span><span>.NET</span><span>.NET MAUI</span><span>SQL</span><span>SQLite</span><span>HTML5</span><span>CSS</span><span>GitHub</span><span>Claude Code</span>
+  </div>
+</div>
+
+<div class="container layout">
+  <div id="servicios">
+    <p class="label reveal">Servicios</p>
+    <h2 class="reveal">Qué hago</h2>
+    <div class="services">
+      <div class="card reveal">
+        <div class="icon">▦</div>
+        <h3>Aplicaciones de gestión</h3>
+        <p>Citas, stock, caja, personal o facturación, adaptados a cómo trabaja tu negocio.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">◎</div>
+        <h3>Webs y reservas online</h3>
+        <p>Páginas de presentación y sistemas de reserva conectados a tu agenda, sin trabajo duplicado.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon">↻</div>
+        <h3>Mantenimiento y mejoras</h3>
+        <p>Actualizo, corrijo y amplío proyectos existentes para que sigan funcionando bien.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="proyectos">
+    <p class="label reveal">Trabajos</p>
+    <h2 class="reveal">Proyectos</h2>
+    <div class="projects">
+      <article class="card project reveal">
+        <span class="tag">App de gestión</span>
+        <h3>App de gestión para peluquería</h3>
+        <p>Aplicación de escritorio y móvil con agenda compartida, fichajes, stock, caja y control de horarios.</p>
+        <ul>
+          <li>Control de stock, caja, horarios y vacaciones.</li>
+          <li>Agenda accesible desde el móvil de cada trabajadora.</li>
+          <li>Preparada para VeriFactu.</li>
+        </ul>
+        <div class="mock">[ captura de la app ]</div>
+      </article>
+      <article class="card project reveal">
+        <span class="tag">Web</span>
+        <h3>Web de reservas para peluquería</h3>
+        <p>Web de reservas online conectada a la app de gestión: cada cita que se reserva aparece al instante en la agenda de la peluquería.</p>
+        <ul>
+          <li>Los clientes reservan desde cualquier móvil u ordenador.</li>
+          <li>Las citas llegan directamente a la agenda de las trabajadoras.</li>
+        </ul>
+        <div class="mock">[ captura de la web de reservas ]</div>
+      </article>
+      <article class="card project reveal">
+        <span class="tag">Web</span>
+        <h3>Web para dietética</h3>
+        <p>Sitio de presentación pensado para que los clientes encuentren rápido la información práctica.</p>
+        <ul>
+          <li>Diseño limpio y adaptado a móvil.</li>
+          <li>Tecnología: HTML y CSS.</li>
+        </ul>
+        <div class="mock">[ captura de la web ]</div>
+      </article>
+    </div>
+  </div>
+</div>
+
+<section id="resenas" class="reseñas-wrap">
+  <div class="container">
+    <p class="label reveal">Opiniones</p>
+    <h2 class="reveal">Lo que dicen mis clientes</h2>
+    <p class="empty reveal">Todavía no hay reseñas. ¡Sé el primero en dejar una!</p>
+    <form id="form-resena" class="contact-form reveal">
+      <div class="stars" id="stars">
+        <button type="button" data-v="1">★</button><button type="button" data-v="2">★</button><button type="button" data-v="3">★</button><button type="button" data-v="4">★</button><button type="button" data-v="5">★</button>
+      </div>
+      <input type="text" name="nombre" placeholder="Tu nombre" required>
+      <textarea name="texto" rows="4" placeholder="Cuéntanos tu experiencia" required></textarea>
+      <label class="privacy-check"><input type="checkbox" required> <span>He leído y acepto la <a href="#privacidad">política de privacidad</a>.</span></label>
+      <button class="btn btn-primary" type="submit">Enviar reseña</button>
+      <p class="hint">Tu reseña puede tardar unos minutos en publicarse.</p>
+    </form>
+  </div>
+</section>
+
+<section id="sobre-mi" class="about">
+  <div class="container">
+    <p class="label reveal">Sobre mí</p>
+    <h2 class="reveal">Desarrollador en formación, con ganas de resolver problemas reales</h2>
+    <p class="reveal">Soy Ignacio Garrido Martínez, tengo 20 años y estudio Desarrollo de Aplicaciones Multiplataforma (DAM), con una base sólida en Java, C# y SQL, y ahora programo a diario con .NET MAUI.</p>
+    <p class="reveal">Soy desarrollador de aplicaciones en prácticas en Infosersistemas, en remoto, donde me encargo de las pruebas de las aplicaciones. También desarrollo por mi cuenta una aplicación de gestión para una peluquería, en C# y .NET MAUI, conectada a su web de reservas.</p>
+    <p class="reveal">Me interesa crear software útil y fácil de usar, y acompañar al cliente desde la idea hasta que la herramienta funciona en su día a día. Mi objetivo a medio plazo es especializarme en ciberseguridad e inteligencia artificial.</p>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="container">
+    <div class="contact-box reveal">
+      <h2>¿Tienes un proyecto en mente?</h2>
+      <p>Cuéntame qué necesitas y te respondo en menos de 24 horas.</p>
+      <form id="form-contacto" class="contact-form">
+        <input type="text" name="nombre" placeholder="Tu nombre" required>
+        <select name="tipo" required>
+          <option value="">¿Qué necesitas?</option>
+          <option>Una aplicación de gestión</option>
+          <option>Una web o reservas online</option>
+          <option>Mantenimiento o mejoras</option>
+          <option>Otro</option>
+        </select>
+        <textarea name="mensaje" rows="4" placeholder="Cuéntame tu idea" required></textarea>
+        <label class="privacy-check"><input type="checkbox" required> <span>He leído y acepto la <a href="#privacidad">política de privacidad</a>.</span></label>
+        <button class="btn btn-primary" type="submit">Enviar</button>
+        <p class="hint">Se abrirá tu aplicación de correo con el mensaje listo para enviar. Si no se abre, escríbeme a ignaciog2006@gmail.com o por WhatsApp.</p>
+      </form>
+      </div>
+      <div class="contact-box links-box">
+        <div class="links">
+        <a class="btn btn-primary" href="https://wa.me/34640169734?text=Hola%2C%20te%20he%20visto%20por%20la%20web%20y%20me%20gustar%C3%ADa%20hacer%20un%20proyecto%20contigo." target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn btn-ghost" href="mailto:ignaciog2006@gmail.com">Escribirme por email</a>
+        <a class="btn btn-ghost" href="https://www.malt.es/" target="_blank" rel="noopener">Malt</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="privacidad" class="privacy">
+  <div class="container">
+    <button type="button" class="close-privacy" aria-label="Cerrar">×</button>
+    <p class="label">Legal</p>
+    <h2>Política de privacidad</h2>
+    <h3>Responsable</h3>
+    <p>Ignacio Garrido Martínez. Correo de contacto: ignaciog2006@gmail.com.</p>
+    <h3>Qué datos recogemos</h3>
+    <p>Nombre, correo electrónico (si lo facilitas) y el contenido del mensaje o de la reseña que envías a través de esta web.</p>
+    <h3>Para qué los usamos</h3>
+    <p>Para responder a tu consulta o preparar un presupuesto. En el caso de las reseñas, para mostrarlas en esta web una vez revisadas, siempre con tu consentimiento.</p>
+    <h3>Base legal</h3>
+    <p>Tu consentimiento, que das al marcar la casilla antes de enviar el formulario, y las medidas precontractuales si solicitas un presupuesto.</p>
+    <h3>Cuánto tiempo los guardamos</h3>
+    <p>Mientras sea necesario para atender tu consulta y, después, durante los plazos legales. Las reseñas publicadas se mantienen hasta que pidas su retirada.</p>
+    <h3>A quién los comunicamos</h3>
+    <p>No cedemos tus datos a terceros, salvo obligación legal. Al enviar el formulario se abre tu aplicación de correo, y el mensaje llega a la bandeja del responsable.</p>
+    <h3>Tus derechos</h3>
+    <p>Puedes pedir acceso, rectificación, supresión, oposición, limitación y portabilidad de tus datos, y retirar tu consentimiento en cualquier momento, escribiendo a ignaciog2006@gmail.com. Si consideras que no se tratan bien, puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).</p>
+  </div>
+</section>
+
+<div id="proyecto-modal" class="pmodal" aria-hidden="true">
+  <div class="pbox">
+    <button type="button" class="pclose" aria-label="Cerrar">×</button>
+    <div class="pcontent"></div>
+    <p class="label" style="margin-top: 28px;">Más capturas</p>
+    <div class="gallery">
+      <div class="mock">[ captura 1 ]</div>
+      <div class="mock">[ captura 2 ]</div>
+      <div class="mock">[ captura 3 ]</div>
+    </div>
+  </div>
+</div>
+
+<div id="servicio-modal" class="pmodal" aria-hidden="true">
+  <div class="pbox">
+    <button type="button" class="pclose" aria-label="Cerrar">×</button>
+    <div class="pcontent"></div>
+    <a class="btn btn-primary" href="#contacto" data-close style="display: inline-block; margin-top: 12px;">Pide información</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Ignacio Garrido Martínez. Todos los derechos reservados. · <a href="#privacidad">Política de privacidad</a></p>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/34640169734?text=Hola%2C%20te%20he%20visto%20por%20la%20web%20y%20me%20gustar%C3%ADa%20hacer%20un%20proyecto%20contigo." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C22 6.45 17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.29 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+</a>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  const priv = document.getElementById('privacidad');
+  const openPriv = (e) => { if (e) e.preventDefault(); priv.classList.add('open'); document.body.style.overflow = 'hidden'; };
+  const closePriv = () => { priv.classList.remove('open'); document.body.style.overflow = ''; };
+  document.querySelectorAll('a[href="#privacidad"]').forEach((a) => a.addEventListener('click', openPriv));
+  document.querySelector('.close-privacy').addEventListener('click', closePriv);
+  priv.addEventListener('click', (e) => { if (e.target === priv) closePriv(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePriv(); });
+
+  const pm = document.getElementById('proyecto-modal');
+  const closeProject = () => { pm.classList.remove('open'); document.body.style.overflow = ''; };
+  document.querySelectorAll('.project').forEach((card) => card.addEventListener('click', () => {
+    pm.querySelector('.pcontent').innerHTML = card.innerHTML;
+    pm.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }));
+  pm.querySelector('.pclose').addEventListener('click', closeProject);
+  pm.addEventListener('click', (e) => { if (e.target === pm) closeProject(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeProject(); });
+
+  const details = [
+    '<h3>Aplicaciones de gestión</h3><p>Programas a medida para organizar el día a día de tu negocio: citas, stock, caja, personal o facturación.</p><ul><li>Primero entiendo cómo trabajas y qué tareas quieres quitarte de encima.</li><li>Diseño la aplicación con una interfaz sencilla para tu equipo.</li><li>La pruebo contigo y la ajusto hasta que encaje con tu forma de trabajar.</li></ul>',
+    '<h3>Webs y reservas online</h3><p>Una web clara que da confianza y, si lo necesitas, un sistema de reservas conectado a tu agenda.</p><ul><li>Diseño adaptado a móvil y a ordenador.</li><li>Las reservas aparecen directamente en tu agenda, sin trabajo duplicado.</li><li>Textos y estructura pensados para que el cliente encuentre lo que busca.</li></ul>',
+    '<h3>Mantenimiento y mejoras</h3><p>Me encargo de que tu aplicación o web siga funcionando bien con el paso del tiempo.</p><ul><li>Corrijo errores y actualizo lo que haga falta.</li><li>Añado funciones nuevas cuando tu negocio las necesite.</li><li>Resuelvo las dudas que surjan en el día a día.</li></ul>'
+  ];
+  const svcModal = document.getElementById('servicio-modal');
+  const closeSvc = () => { svcModal.classList.remove('open'); document.body.style.overflow = ''; };
+  document.querySelectorAll('#servicios .card').forEach((card, i) => card.addEventListener('click', () => {
+    svcModal.querySelector('.pcontent').innerHTML = details[i];
+    svcModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }));
+  svcModal.querySelector('.pclose').addEventListener('click', closeSvc);
+  svcModal.addEventListener('click', (e) => { if (e.target === svcModal || e.target.hasAttribute('data-close')) closeSvc(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSvc(); });
+
+  let rating = 0;
+  document.querySelectorAll('#stars button').forEach((b) => b.addEventListener('click', () => {
+    rating = Number(b.dataset.v);
+    document.querySelectorAll('#stars button').forEach((x) => x.classList.toggle('on', Number(x.dataset.v) <= rating));
+  }));
+
+  document.getElementById('form-resena').addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!rating) { e.target.querySelector('.hint').textContent = 'Elige una puntuación de estrellas antes de enviar.'; return; }
+    const d = new FormData(e.target);
+    const subject = 'Nueva reseña (' + rating + '/5) de ' + d.get('nombre');
+    const body = d.get('texto') + '\n\n— ' + d.get('nombre') + ' · ' + rating + '/5 estrellas';
+    window.location.href = 'mailto:ignaciog2006@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  });
+
+  document.getElementById('form-contacto').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const d = new FormData(e.target);
+    const subject = 'Nuevo contacto desde la web: ' + d.get('tipo');
+    const body = 'Nombre: ' + d.get('nombre') + '\n\nQué necesita: ' + d.get('tipo') + '\n\nMensaje:\n' + d.get('mensaje');
+    window.location.href = 'mailto:ignaciog2006@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  });
+</script>
+</body>
+</html>
