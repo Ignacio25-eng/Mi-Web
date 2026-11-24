@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ignacio Garrido · Desarrollador de apps y webs</title>
 <meta name="description" content="Desarrollo de apps y webs a medida. Proyectos reales y contacto.">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <style>
   :root {
     --blue: #F59E0B;
@@ -181,7 +183,10 @@
   .topbar { position: sticky; top: 0; z-index: 50; background: rgba(43,31,66,.85); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
   .topbar-in { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; padding-bottom: 14px; }
   .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; }
-  .logo { width: 34px; height: 34px; border-radius: 9px; background: var(--blue); color: #1a1200; display: grid; place-items: center; font-family: monospace; font-weight: 800; box-shadow: 0 0 18px rgba(245,158,11,.5); }
+  .logo { width: 40px; height: 40px; border-radius: 10px; display: block; object-fit: cover; border: 1px solid rgba(245,158,11,.45); box-shadow: 0 0 18px rgba(245,158,11,.45); }
+  .footer-brand { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .footer-logo { width: 56px; height: 56px; border-radius: 14px; border: 1px solid rgba(245,158,11,.4); box-shadow: 0 0 24px rgba(245,158,11,.35); }
+  footer a { color: var(--blue-soft); }
   .topbar a { color: var(--muted); text-decoration: none; font-size: .9rem; margin-left: 18px; }
   .topbar a:hover { color: var(--blue-soft); }
   @media (max-width: 640px) {
@@ -214,7 +219,7 @@
 
 <nav class="topbar">
   <div class="container topbar-in">
-    <span class="brand"><span class="logo">&lt;/&gt;</span>Ignacio Garrido</span>
+    <span class="brand"><img class="logo" src="img/logo.png" alt="Logo de Ignacio Garrido">Ignacio Garrido</span>
     <div>
       <a href="#proyectos">Proyectos</a>
       <a href="#contacto">Contacto</a>
@@ -408,7 +413,8 @@
 </div>
 
 <footer>
-  <div class="container">
+  <div class="container footer-brand">
+    <img class="footer-logo" src="img/logo.png" alt="" aria-hidden="true">
     <p>© 2026 Ignacio Garrido Martínez. Todos los derechos reservados. · <a href="#privacidad">Política de privacidad</a></p>
   </div>
 </footer>
