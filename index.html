@@ -189,6 +189,17 @@
   .gallery a:hover { transform: translateY(-3px); box-shadow: 0 0 26px rgba(255,122,0,.3); }
   .gallery .shot { margin-top: 0; }
   .pbox .lead { color: var(--text); font-size: 1.05rem; }
+  .live {
+    align-self: flex-start; color: var(--blue-soft); text-decoration: none; font-weight: 700; font-size: .9rem;
+    border: 1px solid rgba(255,122,0,.5); border-radius: 999px; padding: 6px 14px; transition: background .2s, color .2s;
+  }
+  .live:hover { background: var(--fire); color: #1a0800; }
+  .pbox .live { display: inline-block; margin-bottom: 20px; }
+  .honey { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .hint.ok { color: #7ddc8a; }
+  .hint.error { color: #ff8a65; }
+  .hint a { color: var(--blue-soft); }
+  .contact-form button:disabled { opacity: .7; cursor: wait; }
   .pbox h4 { font-size: 1rem; margin: 22px 0 8px; color: var(--blue-soft); }
   #servicios .card { cursor: pointer; }
   .topbar { position: sticky; top: 0; z-index: 50; background: rgba(11,8,9,.85); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
@@ -311,6 +322,7 @@
           <li>Los clientes reservan desde cualquier móvil u ordenador.</li>
           <li>Las citas llegan directamente a la agenda de las trabajadoras.</li>
         </ul>
+        <a class="live" href="https://ignacio25-eng.github.io/Bego-a-granero-web/" target="_blank" rel="noopener">Ver web en vivo ↗</a>
         <img class="shot" src="img/capturas/reservas-inicio.jpg" alt="Portada de la web de reservas de la peluquería" loading="lazy">
         <template class="extra">
           <a href="img/capturas/reservas-servicios.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/reservas-servicios.jpg" alt="Servicios y precios por sección" loading="lazy"></a>
@@ -337,23 +349,7 @@
   </div>
 </div>
 
-<section id="resenas" class="reseñas-wrap">
-  <div class="container">
-    <p class="label reveal">Opiniones</p>
-    <h2 class="reveal">Lo que dicen mis clientes</h2>
-    <p class="empty reveal">Todavía no hay reseñas. ¡Sé el primero en dejar una!</p>
-    <form id="form-resena" class="contact-form reveal">
-      <div class="stars" id="stars">
-        <button type="button" data-v="1">★</button><button type="button" data-v="2">★</button><button type="button" data-v="3">★</button><button type="button" data-v="4">★</button><button type="button" data-v="5">★</button>
-      </div>
-      <input type="text" name="nombre" placeholder="Tu nombre" required>
-      <textarea name="texto" rows="4" placeholder="Cuéntanos tu experiencia" required></textarea>
-      <label class="privacy-check"><input type="checkbox" required> <span>He leído y acepto la <a href="#privacidad">política de privacidad</a>.</span></label>
-      <button class="btn btn-primary" type="submit">Enviar reseña</button>
-      <p class="hint">Tu reseña puede tardar unos minutos en publicarse.</p>
-    </form>
-  </div>
-</section>
+<!-- Sección de reseñas retirada hasta tener testimonios reales de clientes. -->
 
 <section id="sobre-mi" class="about">
   <div class="container">
@@ -372,6 +368,8 @@
       <p>Cuéntame qué necesitas y te respondo en menos de 24 horas.</p>
       <form id="form-contacto" class="contact-form">
         <input type="text" name="nombre" placeholder="Tu nombre" required>
+        <input type="email" name="email" placeholder="Tu email, para poder responderte" required>
+        <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
         <select name="tipo" required>
           <option value="">¿Qué necesitas?</option>
           <option>Una aplicación de gestión</option>
@@ -382,7 +380,7 @@
         <textarea name="mensaje" rows="4" placeholder="Cuéntame tu idea" required></textarea>
         <label class="privacy-check"><input type="checkbox" required> <span>He leído y acepto la <a href="#privacidad">política de privacidad</a>.</span></label>
         <button class="btn btn-primary" type="submit">Enviar</button>
-        <p class="hint">Se abrirá tu aplicación de correo con el mensaje listo para enviar. Si no se abre, escríbeme a ignaciog2006@gmail.com o por WhatsApp.</p>
+        <p class="hint" aria-live="polite">Te respondo en menos de 24 horas al email que me dejes.</p>
       </form>
       </div>
       <div class="contact-box links-box">
@@ -390,6 +388,7 @@
         <a class="btn btn-primary" href="https://wa.me/34640169734?text=Hola%2C%20te%20he%20visto%20por%20la%20web%20y%20me%20gustar%C3%ADa%20hacer%20un%20proyecto%20contigo." target="_blank" rel="noopener">WhatsApp</a>
         <a class="btn btn-ghost" href="mailto:ignaciog2006@gmail.com">Escribirme por email</a>
         <a class="btn btn-ghost" href="https://www.malt.com/profile/ignaciogarrido" target="_blank" rel="noopener">Malt</a>
+        <a class="btn btn-ghost" href="https://github.com/Ignacio25-eng" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </div>
@@ -403,15 +402,15 @@
     <h3>Responsable</h3>
     <p>Ignacio Garrido Martínez. Correo de contacto: ignaciog2006@gmail.com.</p>
     <h3>Qué datos recogemos</h3>
-    <p>Nombre, correo electrónico (si lo facilitas) y el contenido del mensaje o de la reseña que envías a través de esta web.</p>
+    <p>Nombre, correo electrónico, el tipo de proyecto que te interesa y el contenido del mensaje que envías a través del formulario de contacto.</p>
     <h3>Para qué los usamos</h3>
-    <p>Para responder a tu consulta o preparar un presupuesto. En el caso de las reseñas, para mostrarlas en esta web una vez revisadas, siempre con tu consentimiento.</p>
+    <p>Solo para responder a tu consulta o preparar un presupuesto. No los usamos para enviarte publicidad.</p>
     <h3>Base legal</h3>
     <p>Tu consentimiento, que das al marcar la casilla antes de enviar el formulario, y las medidas precontractuales si solicitas un presupuesto.</p>
     <h3>Cuánto tiempo los guardamos</h3>
-    <p>Mientras sea necesario para atender tu consulta y, después, durante los plazos legales. Las reseñas publicadas se mantienen hasta que pidas su retirada.</p>
+    <p>Mientras sea necesario para atender tu consulta y, después, durante los plazos legales.</p>
     <h3>A quién los comunicamos</h3>
-    <p>No cedemos tus datos a terceros, salvo obligación legal. Al enviar el formulario se abre tu aplicación de correo, y el mensaje llega a la bandeja del responsable.</p>
+    <p>No cedemos tus datos a terceros, salvo obligación legal. Para hacer llegar el formulario a nuestro correo usamos FormSubmit (formsubmit.co), que actúa solo como servicio de envío.</p>
     <h3>Tus derechos</h3>
     <p>Puedes pedir acceso, rectificación, supresión, oposición, limitación y portabilidad de tus datos, y retirar tu consentimiento en cualquier momento, escribiendo a ignaciog2006@gmail.com. Si consideras que no se tratan bien, puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).</p>
   </div>
@@ -461,7 +460,8 @@
 
   const pm = document.getElementById('proyecto-modal');
   const closeProject = () => { pm.classList.remove('open'); document.body.style.overflow = ''; };
-  document.querySelectorAll('.project').forEach((card) => card.addEventListener('click', () => {
+  document.querySelectorAll('.project').forEach((card) => card.addEventListener('click', (e) => {
+    if (e.target.closest('a')) return; // el enlace "Ver web en vivo" abre la web, no la ventana
     pm.querySelector('.pcontent').innerHTML = card.innerHTML;
     const extra = card.querySelector('template.extra');
     pm.querySelector('.gallery').innerHTML = extra ? extra.innerHTML : '';
@@ -509,27 +509,48 @@
   svcModal.addEventListener('click', (e) => { if (e.target === svcModal || e.target.hasAttribute('data-close')) closeSvc(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSvc(); });
 
-  let rating = 0;
-  document.querySelectorAll('#stars button').forEach((b) => b.addEventListener('click', () => {
-    rating = Number(b.dataset.v);
-    document.querySelectorAll('#stars button').forEach((x) => x.classList.toggle('on', Number(x.dataset.v) <= rating));
-  }));
-
-  document.getElementById('form-resena').addEventListener('submit', (e) => {
+  // Envío del formulario de contacto con FormSubmit: el mensaje llega directo al correo,
+  // sin abrir ningún programa en el ordenador del visitante.
+  const FORM_ENDPOINT = 'https://formsubmit.co/ajax/ignaciog2006@gmail.com';
+  const formContacto = document.getElementById('form-contacto');
+  formContacto.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (!rating) { e.target.querySelector('.hint').textContent = 'Elige una puntuación de estrellas antes de enviar.'; return; }
-    const d = new FormData(e.target);
-    const subject = 'Nueva reseña (' + rating + '/5) de ' + d.get('nombre');
-    const body = d.get('texto') + '\n\n— ' + d.get('nombre') + ' · ' + rating + '/5 estrellas';
-    window.location.href = 'mailto:ignaciog2006@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-  });
+    const form = e.target;
+    const hint = form.querySelector('.hint');
+    const btn = form.querySelector('button[type="submit"]');
+    const d = new FormData(form);
+    if (d.get('_honey')) return; // campo trampa: si viene relleno, es un bot
 
-  document.getElementById('form-contacto').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const d = new FormData(e.target);
-    const subject = 'Nuevo contacto desde la web: ' + d.get('tipo');
-    const body = 'Nombre: ' + d.get('nombre') + '\n\nQué necesita: ' + d.get('tipo') + '\n\nMensaje:\n' + d.get('mensaje');
-    window.location.href = 'mailto:ignaciog2006@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    hint.classList.remove('ok', 'error');
+
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _subject: 'Nuevo contacto desde la web: ' + d.get('tipo'),
+          _template: 'table',
+          _captcha: 'false',
+          Nombre: d.get('nombre'),
+          Email: d.get('email'),
+          'Qué necesita': d.get('tipo'),
+          Mensaje: d.get('mensaje')
+        })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || String(data.success) === 'false') throw new Error(data.message || 'Error al enviar');
+      form.reset();
+      hint.classList.add('ok');
+      hint.textContent = '¡Gracias! Tu mensaje me ha llegado. Te respondo en menos de 24 horas.';
+    } catch (err) {
+      hint.classList.add('error');
+      hint.innerHTML = 'No se ha podido enviar ahora mismo. Escríbeme a <a href="mailto:ignaciog2006@gmail.com">ignaciog2006@gmail.com</a> o por WhatsApp y te contesto enseguida.';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Enviar';
+    }
   });
 </script>
 </body>
