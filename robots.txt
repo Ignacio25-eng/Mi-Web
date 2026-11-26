@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ignacio25-eng.github.io/Mi-Web/sitemap.xml
