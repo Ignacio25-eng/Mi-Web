@@ -1378,6 +1378,17 @@ button:disabled{cursor:not-allowed}
     const barras = ['bar-a', 'bar-b', 'bar-c', 'bar-d'];
     let n = 0, numCitas = 8, numWeb = 3, activo = true, timer = 0;
 
+    // La agenda tiene siempre la altura de 3 citas: la nueva entra por abajo mientras la primera se va
+    // por arriba dentro de ese hueco. Si cambiara de altura, todo el inicio (que va centrado) daría un salto.
+    const fijarAltura = () => {
+      if (lista.querySelector('.sale') || lista.children.length !== 3) return;   // a mitad de un cambio: luego
+      lista.style.height = '';
+      lista.style.height = lista.offsetHeight + 'px';
+    };
+    fijarAltura();
+    let esperaResize = 0;
+    addEventListener('resize', () => { clearTimeout(esperaResize); esperaResize = setTimeout(fijarAltura, 200); });
+
     const subir = (el, valor) => {
       el.textContent = valor;
       el.classList.remove('sube'); void el.offsetWidth; el.classList.add('sube');
@@ -1396,7 +1407,7 @@ button:disabled{cursor:not-allowed}
         const primera = lista.querySelector('.agenda-row:not(.sale)');
         if (primera && lista.querySelectorAll('.agenda-row:not(.sale)').length > 3) {
           primera.classList.add('sale');
-          setTimeout(() => primera.remove(), 600);
+          setTimeout(() => { primera.remove(); fijarAltura(); }, 600);
         }
         numCitas = numCitas >= 14 ? 8 : numCitas + 1;
         numWeb = numWeb >= 9 ? 3 : numWeb + 1;
