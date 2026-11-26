@@ -7,6 +7,7 @@
 <meta name="description" content="Soy Ignacio Garrido, desarrollador independiente. Diseño webs, aplicaciones de gestión y automatizaciones a medida para negocios en Madrid y toda España.">
 <meta name="author" content="Ignacio Garrido Martínez">
 <meta name="theme-color" content="#090711">
+<meta name="color-scheme" content="dark">
 <link rel="canonical" href="https://ignacio25-eng.github.io/Mi-Web/">
 <link rel="icon" type="image/png" href="img/favicon.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -493,6 +494,121 @@ html{scroll-padding-top:92px}body{background:radial-gradient(ellipse at 75% 4%,r
 @media(max-width:380px){.container{padding-left:16px;padding-right:16px}.brand{gap:8px}.brand small{letter-spacing:.1em}.app-user{gap:5px}.today-pill{font-size:.45rem}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
+
+/* IG DIGITAL STUDIO — refinamiento visual v2 */
+:root{
+  --accent:#F59E0B;
+  --accent-bright:#FBBF24;
+  --surface:#100D1B;
+  --surface-raised:#171226;
+  --line:rgba(181,158,218,.17);
+  --purple-glow:rgba(103,73,145,.18);
+}
+body{
+  background:
+    radial-gradient(ellipse at 82% 7%,rgba(89,58,132,.18),transparent 33rem),
+    radial-gradient(ellipse at 8% 68%,rgba(62,42,99,.13),transparent 30rem),
+    #090711;
+}
+::selection{background:rgba(245,158,11,.28);color:#fff}
+.topbar{box-shadow:0 10px 35px rgba(0,0,0,.12)}
+.topbar-in{max-width:1304px}
+.brand{white-space:nowrap}
+.brand>span{font-size:1.02rem}
+.brand small{font-weight:700}
+.hero{padding-top:clamp(58px,7vw,100px);padding-bottom:clamp(58px,6vw,88px)}
+.hero:after{
+  content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(168,135,210,.2),rgba(245,158,11,.24),transparent);
+}
+.hero h1{max-width:680px;text-wrap:balance}
+.hero-lead{max-width:540px}
+.hero-visual{isolation:isolate}
+.app-window{transform:perspective(1400px) rotateY(-3deg) rotateX(1deg)}
+.app-top{letter-spacing:.01em}
+.app-heading h2{color:#F8F5FC}
+.float-chip{backdrop-filter:blur(12px)}
+.stack{margin-top:0}
+.stack span{transition:border-color .2s,color .2s,background .2s}
+.stack span:hover{color:#F5C66D;border-color:rgba(245,158,11,.34);background:rgba(245,158,11,.045)}
+.layout{max-width:1304px}
+#proyectos,#servicios{scroll-margin-top:100px}
+#proyectos>h2,#servicios>h2{margin-bottom:30px}
+.projects{align-items:stretch}
+.project.card{position:relative;overflow:hidden}
+.project.card:before{
+  content:"";position:absolute;inset:0 0 auto;height:2px;
+  background:linear-gradient(90deg,transparent,rgba(245,158,11,.55),transparent);opacity:0;transition:opacity .25s;
+}
+.project.card:hover:before{opacity:1}
+.project .shot{width:100%;background:#0d0a16}
+.services .card{min-height:210px}
+.services .icon{font-size:1.15rem;border:1px solid rgba(245,158,11,.13)}
+.process{position:relative}
+.step.card{min-height:235px}
+.step-num{font-size:.9rem}
+.about{position:relative;overflow:hidden}
+.about:before{content:"";position:absolute;width:420px;height:420px;right:-260px;top:15%;border:1px solid rgba(159,119,214,.12);border-radius:50%;box-shadow:0 0 0 55px rgba(159,119,214,.025),0 0 0 110px rgba(159,119,214,.018);pointer-events:none}
+.about .container{position:relative;z-index:1}
+.about-signals{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;
+  margin-top:30px;max-width:920px
+}
+.about-signal{
+  display:flex;flex-direction:column;gap:7px;min-height:125px;padding:19px;
+  border:1px solid var(--line);border-radius:13px;
+  background:linear-gradient(145deg,rgba(29,23,43,.9),rgba(15,12,24,.92))
+}
+.signal-kicker{font-size:.61rem;letter-spacing:.16em;font-weight:800;color:#B5A9C9}
+.about-signal strong{font-size:1.08rem;color:#F5F1FA;letter-spacing:-.025em}
+.about-signal small{color:#A7A0B2;font-size:.79rem;line-height:1.5}
+.faq-item{overflow:hidden}
+.faq-item summary{transition:color .2s}
+.faq-item summary:focus-visible{outline-offset:-4px}
+.cta-box{position:relative;overflow:hidden}
+.cta-box:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:linear-gradient(180deg,transparent,var(--accent),transparent)}
+.contact-box{border-radius:16px}
+.contact-form{max-width:620px}
+.contact-form button{min-width:160px}
+.contact-form .hint{line-height:1.55}
+.privacy .container,.pbox{max-width:min(900px,100%)}
+.wa-float{width:54px;height:54px}
+.wa-float svg{width:25px;height:25px}
+footer{padding-top:38px;padding-bottom:38px}
+.footer-logo{width:48px;height:48px;object-fit:contain}
+a,button{ -webkit-tap-highlight-color:transparent }
+button:disabled{cursor:not-allowed}
+@media(hover:none){
+  .project.card:hover,.services .card:hover,.step.card:hover{transform:none}
+}
+@media(max-width:820px){
+  .about-signals{grid-template-columns:1fr 1fr}
+  .about-signal:last-child{grid-column:1/-1}
+  .app-window{transform:none}
+}
+@media(max-width:640px){
+  .hero{padding-top:45px;padding-bottom:42px}
+  .hero-visual{overflow:visible}
+  .orbit-one{width:min(112vw,420px);height:min(112vw,420px)}
+  .orbit-two{width:min(132vw,500px);height:min(132vw,500px)}
+  .float-chip{max-width:45%;white-space:normal}
+  .about-signals{grid-template-columns:1fr;gap:10px}
+  .about-signal,.about-signal:last-child{grid-column:auto;min-height:0}
+  .step.card{min-height:0}
+  .contact-form button{width:100%}
+  .wa-float{width:50px;height:50px;right:14px;bottom:14px}
+}
+@media(max-width:360px){
+  .brand small{display:none}
+  .app-main{padding-left:8px;padding-right:8px}
+  .agenda-row{grid-template-columns:29px 3px minmax(0,1fr)}
+  .agenda-row em{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .app-window{transform:none}
+  .hero:before,.hero:after,.about:before{animation:none}
+}
+
 </style>
 </head>
 <body>
@@ -565,11 +681,11 @@ html{scroll-padding-top:92px}body{background:radial-gradient(ellipse at 75% 4%,r
           <li>Agenda accesible desde el móvil de cada trabajadora.</li>
           <li>Preparada para VeriFactu.</li>
         </ul>
-        <img class="shot" src="img/capturas/app-caja.jpg" alt="Pantalla de caja de la app de gestión" loading="lazy">
+        <img class="shot" src="img/capturas/app-caja.jpg" alt="Pantalla de caja de la app de gestión" loading="lazy" decoding="async">
         <template class="extra">
-          <a href="img/capturas/app-nueva-cita.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/app-nueva-cita.jpg" alt="Formulario de nueva cita" loading="lazy"></a>
-          <a href="img/capturas/app-caja-color.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/app-caja-color.jpg" alt="Caja con los servicios de color" loading="lazy"></a>
-          <a href="img/capturas/app-trabajadoras.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/app-trabajadoras.jpg" alt="Listado de trabajadoras" loading="lazy"></a>
+          <a href="img/capturas/app-nueva-cita.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/app-nueva-cita.jpg" alt="Formulario de nueva cita" loading="lazy" decoding="async"></a>
+          <a href="img/capturas/app-caja-color.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/app-caja-color.jpg" alt="Caja con los servicios de color" loading="lazy" decoding="async"></a>
+          <a href="img/capturas/app-trabajadoras.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/app-trabajadoras.jpg" alt="Listado de trabajadoras" loading="lazy" decoding="async"></a>
         </template>
       </article>
       <article class="card project reveal">
@@ -581,11 +697,11 @@ html{scroll-padding-top:92px}body{background:radial-gradient(ellipse at 75% 4%,r
           <li>Las citas llegan directamente a la agenda de las trabajadoras.</li>
         </ul>
         <a class="live" href="https://ignacio25-eng.github.io/Bego-a-granero-web/" target="_blank" rel="noopener">Ver web en vivo ↗</a>
-        <img class="shot" src="img/capturas/reservas-inicio.jpg" alt="Portada de la web de reservas de la peluquería" loading="lazy">
+        <img class="shot" src="img/capturas/reservas-inicio.jpg" alt="Portada de la web de reservas de la peluquería" loading="lazy" decoding="async">
         <template class="extra">
-          <a href="img/capturas/reservas-servicios.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/reservas-servicios.jpg" alt="Servicios y precios por sección" loading="lazy"></a>
-          <a href="img/capturas/reservas-galeria.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/reservas-galeria.jpg" alt="Galería y opiniones de Google" loading="lazy"></a>
-          <a href="img/capturas/reservas-cita.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/reservas-cita.jpg" alt="Formulario para pedir cita online" loading="lazy"></a>
+          <a href="img/capturas/reservas-servicios.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/reservas-servicios.jpg" alt="Servicios y precios por sección" loading="lazy" decoding="async"></a>
+          <a href="img/capturas/reservas-galeria.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/reservas-galeria.jpg" alt="Galería y opiniones de Google" loading="lazy" decoding="async"></a>
+          <a href="img/capturas/reservas-cita.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/reservas-cita.jpg" alt="Formulario para pedir cita online" loading="lazy" decoding="async"></a>
         </template>
       </article>
       <article class="card project reveal">
@@ -596,11 +712,11 @@ html{scroll-padding-top:92px}body{background:radial-gradient(ellipse at 75% 4%,r
           <li>Diseño limpio y adaptado a móvil.</li>
           <li>Tecnología: HTML y CSS.</li>
         </ul>
-        <img class="shot" src="img/capturas/dietetica-inicio.jpg" alt="Portada de la web de nutrición y dietética" loading="lazy">
+        <img class="shot" src="img/capturas/dietetica-inicio.jpg" alt="Portada de la web de nutrición y dietética" loading="lazy" decoding="async">
         <template class="extra">
-          <a href="img/capturas/dietetica-servicios.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/dietetica-servicios.jpg" alt="Sección de servicios" loading="lazy"></a>
-          <a href="img/capturas/dietetica-proceso.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/dietetica-proceso.jpg" alt="Cómo es el proceso de trabajo" loading="lazy"></a>
-          <a href="img/capturas/dietetica-resenas.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/dietetica-resenas.jpg" alt="Sección de reseñas" loading="lazy"></a>
+          <a href="img/capturas/dietetica-servicios.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/dietetica-servicios.jpg" alt="Sección de servicios" loading="lazy" decoding="async"></a>
+          <a href="img/capturas/dietetica-proceso.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/dietetica-proceso.jpg" alt="Cómo es el proceso de trabajo" loading="lazy" decoding="async"></a>
+          <a href="img/capturas/dietetica-resenas.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/dietetica-resenas.jpg" alt="Sección de reseñas" loading="lazy" decoding="async"></a>
         </template>
       </article>
     </div>
@@ -671,6 +787,12 @@ html{scroll-padding-top:92px}body{background:radial-gradient(ellipse at 75% 4%,r
     <p class="reveal">Soy Ignacio Garrido Martínez, tengo 20 años y estudio Desarrollo de Aplicaciones Multiplataforma (DAM), con una base sólida en Java, C# y SQL, y ahora programo a diario con .NET MAUI.</p>
     <p class="reveal">Soy desarrollador de aplicaciones en prácticas en Infosersistemas, en remoto, donde me encargo de las pruebas de las aplicaciones. También desarrollo por mi cuenta una aplicación de gestión para una peluquería, en C# y .NET MAUI, conectada a su web de reservas.</p>
     <p class="reveal">Me interesa crear software útil y fácil de usar, y acompañar al cliente desde la idea hasta que la herramienta funciona en su día a día. Mi objetivo a medio plazo es especializarme en ciberseguridad e inteligencia artificial.</p>
+
+    <div class="about-signals reveal" aria-label="Perfil y tecnologías">
+      <div class="about-signal"><span class="signal-kicker">FORMACIÓN</span><strong>DAM</strong><small>Desarrollo de Aplicaciones Multiplataforma</small></div>
+      <div class="about-signal"><span class="signal-kicker">TECNOLOGÍAS</span><strong>C# · Java · SQL</strong><small>.NET MAUI y desarrollo web</small></div>
+      <div class="about-signal"><span class="signal-kicker">ENFOQUE</span><strong>Software útil</strong><small>Pruebas, experiencia de uso y mejora continua</small></div>
+    </div>
   </div>
 </section>
 
