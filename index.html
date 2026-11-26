@@ -776,7 +776,7 @@ button:disabled{cursor:not-allowed}
 }
 
 </style>
-<link rel="stylesheet" href="css/portfolio-refinements.css?v=20261126-6">
+<link rel="stylesheet" href="css/portfolio-refinements.css?v=20261126-7">
 </head>
 <body>
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -852,18 +852,22 @@ button:disabled{cursor:not-allowed}
   <div id="proyectos">
     <p class="label reveal">Trabajos</p>
     <h2 class="reveal">Proyectos</h2>
-    <div class="projects">
-      <article class="card project reveal">
-        <span class="tag">App de gestión</span>
-        <h3>App de gestión para peluquería</h3>
-        <p>Aplicación de escritorio y móvil con agenda compartida, fichajes, stock, caja y control de horarios.</p>
-        <ul>
-          <li>Control de stock, caja, horarios y vacaciones.</li>
-          <li>Agenda accesible desde el móvil de cada trabajadora.</li>
-          <li>Preparada para VeriFactu.</li>
-        </ul>
-        <img class="shot" src="img/capturas/app-caja.jpg" alt="Pantalla de caja de la app de gestión" loading="lazy" decoding="async">
-        <a class="live project-video" href="https://youtu.be/jC0Qt2AbGpU" target="_blank" rel="noopener">Ver vídeo de la app en funcionamiento ↗</a>
+    <div class="projects projects-bento">
+      <article class="card project project-star reveal">
+        <div class="p-info">
+          <div class="p-top"><span class="tag">App de gestión</span><span class="p-destacado" data-deco>★ Proyecto destacado</span><span class="p-num" data-deco aria-hidden="true">01</span></div>
+          <h3>App de gestión para peluquería</h3>
+          <p>Aplicación de escritorio y móvil con agenda compartida, fichajes, stock, caja y control de horarios.</p>
+          <ul>
+            <li>Control de stock, caja, horarios y vacaciones.</li>
+            <li>Agenda accesible desde el móvil de cada trabajadora.</li>
+            <li>Preparada para VeriFactu.</li>
+          </ul>
+          <div class="p-stack" data-deco><span>.NET MAUI</span><span>C#</span><span>SQLite</span><span>Supabase</span></div>
+          <div class="p-acciones"><a class="live project-video" href="https://youtu.be/jC0Qt2AbGpU" target="_blank" rel="noopener">▶ Ver vídeo de la app en funcionamiento ↗</a><span class="p-ver" data-deco>Ver capturas <span aria-hidden="true">→</span></span></div>
+        </div>
+        <div class="p-media"><div class="p-frame"><div class="p-bar" data-deco aria-hidden="true"><i></i><i></i><i></i><span>Caja · App de gestión</span></div>
+        <img class="shot" src="img/capturas/app-caja.jpg" alt="Pantalla de caja de la app de gestión" loading="lazy" decoding="async"></div></div>
         <template class="extra">
           <a href="img/capturas/app-nueva-cita.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/app-nueva-cita.jpg" alt="Formulario de nueva cita" loading="lazy" decoding="async"></a>
           <a href="img/capturas/app-caja-color.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/app-caja-color.jpg" alt="Caja con los servicios de color" loading="lazy" decoding="async"></a>
@@ -871,15 +875,19 @@ button:disabled{cursor:not-allowed}
         </template>
       </article>
       <article class="card project reveal">
-        <span class="tag">Web</span>
-        <h3>Web de reservas para peluquería</h3>
-        <p>Web de reservas online conectada a la app de gestión: cada cita que se reserva aparece al instante en la agenda de la peluquería.</p>
-        <ul>
-          <li>Los clientes reservan desde cualquier móvil u ordenador.</li>
-          <li>Las citas llegan directamente a la agenda de las trabajadoras.</li>
-        </ul>
-        <a class="live" href="https://ignacio25-eng.github.io/Bego-a-granero-web/" target="_blank" rel="noopener">Ver web en vivo ↗</a>
-        <img class="shot" src="img/capturas/reservas-inicio.jpg" alt="Portada de la web de reservas de la peluquería" loading="lazy" decoding="async">
+        <div class="p-media"><div class="p-frame"><div class="p-bar" data-deco aria-hidden="true"><i></i><i></i><i></i><span>Web de reservas</span></div>
+        <img class="shot" src="img/capturas/reservas-inicio.jpg" alt="Portada de la web de reservas de la peluquería" loading="lazy" decoding="async"></div></div>
+        <div class="p-info">
+          <div class="p-top"><span class="tag">Web</span><span class="p-num" data-deco aria-hidden="true">02</span></div>
+          <h3>Web de reservas para peluquería</h3>
+          <p>Web de reservas online conectada a la app de gestión: cada cita que se reserva aparece al instante en la agenda de la peluquería.</p>
+          <ul>
+            <li>Los clientes reservan desde cualquier móvil u ordenador.</li>
+            <li>Las citas llegan directamente a la agenda de las trabajadoras.</li>
+          </ul>
+          <div class="p-stack" data-deco><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Supabase</span></div>
+          <div class="p-acciones"><a class="live" href="https://ignacio25-eng.github.io/Bego-a-granero-web/" target="_blank" rel="noopener">Ver web en vivo ↗</a><span class="p-ver" data-deco>Ver capturas <span aria-hidden="true">→</span></span></div>
+        </div>
         <template class="extra">
           <a href="img/capturas/reservas-servicios.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/reservas-servicios.jpg" alt="Servicios y precios por sección" loading="lazy" decoding="async"></a>
           <a href="img/capturas/reservas-galeria.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/reservas-galeria.jpg" alt="Galería y opiniones de Google" loading="lazy" decoding="async"></a>
@@ -887,14 +895,19 @@ button:disabled{cursor:not-allowed}
         </template>
       </article>
       <article class="card project reveal">
-        <span class="tag">Web</span>
-        <h3>Web para dietética</h3>
-        <p>Sitio de presentación pensado para que los clientes encuentren rápido la información práctica.</p>
-        <ul>
-          <li>Diseño limpio y adaptado a móvil.</li>
-          <li>Tecnología: HTML y CSS.</li>
-        </ul>
-        <img class="shot" src="img/capturas/dietetica-inicio.jpg" alt="Portada de la web de nutrición y dietética" loading="lazy" decoding="async">
+        <div class="p-media"><div class="p-frame"><div class="p-bar" data-deco aria-hidden="true"><i></i><i></i><i></i><span>Web de nutrición</span></div>
+        <img class="shot" src="img/capturas/dietetica-inicio.jpg" alt="Portada de la web de nutrición y dietética" loading="lazy" decoding="async"></div></div>
+        <div class="p-info">
+          <div class="p-top"><span class="tag">Web</span><span class="p-num" data-deco aria-hidden="true">03</span></div>
+          <h3>Web para dietética</h3>
+          <p>Sitio de presentación pensado para que los clientes encuentren rápido la información práctica.</p>
+          <ul>
+            <li>Diseño limpio y adaptado a móvil.</li>
+            <li>Tecnología: HTML y CSS.</li>
+          </ul>
+          <div class="p-stack" data-deco><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+          <div class="p-acciones"><span class="p-ver" data-deco>Ver capturas <span aria-hidden="true">→</span></span></div>
+        </div>
         <template class="extra">
           <a href="img/capturas/dietetica-servicios.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/dietetica-servicios.jpg" alt="Sección de servicios" loading="lazy" decoding="async"></a>
           <a href="img/capturas/dietetica-proceso.jpg" target="_blank" rel="noopener"><img class="shot" src="img/capturas/dietetica-proceso.jpg" alt="Cómo es el proceso de trabajo" loading="lazy" decoding="async"></a>
@@ -1236,7 +1249,10 @@ button:disabled{cursor:not-allowed}
     makeClickable(card, { containsLinks: true, dialogId: 'proyecto-modal' });
     card.addEventListener('click', (e) => {
       if (e.target.closest('a')) return; // el enlace "Ver web en vivo" abre la web, no la ventana
-      pm.querySelector('.pcontent').innerHTML = card.innerHTML;
+      // En la ventana solo va el contenido: sin los adornos de la tarjeta (número, barra del marco, «Ver capturas»…)
+      const copia = card.cloneNode(true);
+      copia.querySelectorAll('[data-deco], template').forEach((el) => el.remove());
+      pm.querySelector('.pcontent').innerHTML = copia.innerHTML;
       const extra = card.querySelector('template.extra');
       pm.querySelector('.gallery').innerHTML = extra ? extra.innerHTML : '';
       pm.setAttribute('aria-label', card.querySelector('h3').textContent);
@@ -1327,6 +1343,17 @@ button:disabled{cursor:not-allowed}
 
 </script>
 <script>
+  // ── PROYECTOS: brillo que sigue al ratón dentro de cada tarjeta ──
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.querySelectorAll('.projects-bento .project').forEach((card) => {
+      card.addEventListener('pointermove', (e) => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--px', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+        card.style.setProperty('--py', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+      });
+    });
+  }
+
   // ── HERO VIVO: el panel gira con el ratón y recibe reservas «en directo» ──
   // Todo es una demostración visual (nombres y horas inventados). Con «reducir movimiento»
   // activado en el sistema no se mueve nada.
