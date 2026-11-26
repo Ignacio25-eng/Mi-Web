@@ -646,6 +646,135 @@ button:disabled{cursor:not-allowed}
   .hero:before,.hero:after,.about:before{animation:none}
 }
 
+
+
+/* Responsive — apartado de opiniones y formulario de reseñas */
+#opiniones .container,
+#lista-resenas,
+#form-resena { min-width: 0; }
+
+#lista-resenas.reviews {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+}
+
+#form-resena {
+  width: 100%;
+  min-width: 0;
+}
+
+#form-resena > * { min-width: 0; }
+#form-resena input:not([type="checkbox"]),
+#form-resena textarea,
+#form-resena select {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+#form-resena textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+#form-resena .privacy-check {
+  min-width: 0;
+  align-items: flex-start;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+#form-resena .privacy-check input {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+}
+
+#form-resena .privacy-check span { min-width: 0; }
+#form-resena .hint { overflow-wrap: anywhere; }
+
+@media (max-width: 640px) {
+  #opiniones.reseñas-wrap { padding: 48px 0; }
+  #opiniones h2 {
+    max-width: 16ch;
+    margin-bottom: 20px;
+    font-size: clamp(1.7rem, 7.5vw, 2.15rem);
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+  #lista-resenas.reviews {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  #lista-resenas .review.card {
+    min-width: 0;
+    padding: 18px;
+    overflow-wrap: anywhere;
+  }
+  #lista-resenas .review blockquote {
+    font-size: .94rem;
+    line-height: 1.65;
+  }
+  #opiniones .invite {
+    margin-bottom: 22px;
+    font-size: .96rem;
+    line-height: 1.65;
+  }
+  #form-resena {
+    gap: 13px;
+    margin-bottom: 0;
+    padding: 16px;
+    border-radius: 13px;
+  }
+  #form-resena .form-title {
+    margin-bottom: 2px;
+    font-size: 1.12rem;
+  }
+  #form-resena .stars {
+    width: 100%;
+    justify-content: center;
+    gap: 3px;
+  }
+  #form-resena .stars button {
+    display: grid;
+    place-items: center;
+    flex: 0 1 44px;
+    min-width: 40px;
+    min-height: 44px;
+    font-size: 1.65rem;
+    line-height: 1;
+  }
+  #form-resena input:not([type="checkbox"]),
+  #form-resena textarea {
+    min-height: 48px;
+    padding: 12px;
+    font-size: 16px;
+  }
+  #form-resena textarea { min-height: 120px; }
+  #form-resena .privacy-check { font-size: .78rem; }
+  #form-resena button[type="submit"] {
+    width: 100%;
+    min-height: 48px;
+    justify-self: stretch;
+  }
+  #form-resena .hint {
+    font-size: .78rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 380px) {
+  #form-resena { padding: 14px; }
+  #form-resena .stars { gap: 1px; }
+  #form-resena .stars button {
+    flex-basis: 42px;
+    min-width: 38px;
+    font-size: 1.55rem;
+  }
+}
+
 </style>
 </head>
 <body>
