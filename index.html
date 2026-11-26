@@ -1073,7 +1073,12 @@ button:disabled{cursor:not-allowed}
     });
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') { document.querySelectorAll('.privacy.open, .pmodal.open').forEach((m) => closeModal(m)); setMenu(false); }
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.privacy.open, .pmodal.open').forEach((m) => closeModal(m));
+      const menuWasOpen = navLinks.classList.contains('open');
+      setMenu(false);
+      if (menuWasOpen) menuBtn.focus();
+    }
   });
   document.querySelectorAll('a[href="#privacidad"], a[href="#aviso-legal"]').forEach((a) => a.addEventListener('click', (e) => {
     e.preventDefault();
@@ -1081,10 +1086,13 @@ button:disabled{cursor:not-allowed}
   }));
 
   // Tarjetas que se abren al pinchar: también con teclado (Tab + Enter o Espacio)
-  const makeClickable = (el) => {
+  const makeClickable = (el, { containsLinks = false, dialogId } = {}) => {
     el.setAttribute('tabindex', '0');
-    el.setAttribute('role', 'button');
-    el.setAttribute('aria-label', 'Ver más: ' + el.querySelector('h3').textContent);
+    // Las tarjetas de proyecto contienen enlaces propios; un grupo evita anidar un enlace dentro de otro botón.
+    el.setAttribute('role', containsLinks ? 'group' : 'button');
+    el.setAttribute('aria-label', (containsLinks ? 'Proyecto: ' : 'Ver más: ') + el.querySelector('h3').textContent);
+    el.setAttribute('aria-haspopup', 'dialog');
+    if (dialogId) el.setAttribute('aria-controls', dialogId);
     el.addEventListener('keydown', (e) => {
       if ((e.key === 'Enter' || e.key === ' ') && e.target === el) { e.preventDefault(); el.click(); }
     });
@@ -1092,7 +1100,7 @@ button:disabled{cursor:not-allowed}
 
   const pm = document.getElementById('proyecto-modal');
   document.querySelectorAll('.project').forEach((card) => {
-    makeClickable(card);
+    makeClickable(card, { containsLinks: true, dialogId: 'proyecto-modal' });
     card.addEventListener('click', (e) => {
       if (e.target.closest('a')) return; // el enlace "Ver web en vivo" abre la web, no la ventana
       pm.querySelector('.pcontent').innerHTML = card.innerHTML;
@@ -1131,7 +1139,7 @@ button:disabled{cursor:not-allowed}
   ];
   const svcModal = document.getElementById('servicio-modal');
   document.querySelectorAll('#servicios .card').forEach((card, i) => {
-    makeClickable(card);
+    makeClickable(card, { dialogId: 'servicio-modal' });
     card.addEventListener('click', () => {
       svcModal.querySelector('.pcontent').innerHTML = details[i];
       svcModal.setAttribute('aria-label', card.querySelector('h3').textContent);
