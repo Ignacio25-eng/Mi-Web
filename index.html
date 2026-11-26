@@ -241,7 +241,8 @@
   footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--muted); font-size: .85rem; text-align: center; }
 
   /* Animaciones al hacer scroll */
-  .reveal { opacity: 0; transform: translateY(40px) scale(.98); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+  .reveal { opacity: 1; transform: none; transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+  .js .reveal { opacity: 0; transform: translateY(40px) scale(.98); }
   .reveal.in { opacity: 1; transform: none; }
   .reveal:nth-child(2) { transition-delay: .12s; }
   .reveal:nth-child(3) { transition-delay: .24s; }
@@ -767,15 +768,15 @@ button:disabled{cursor:not-allowed}
         <button type="button" role="radio" aria-checked="false" aria-label="1 estrella" data-v="1">★</button><button type="button" role="radio" aria-checked="false" aria-label="2 estrellas" data-v="2">★</button><button type="button" role="radio" aria-checked="false" aria-label="3 estrellas" data-v="3">★</button><button type="button" role="radio" aria-checked="false" aria-label="4 estrellas" data-v="4">★</button><button type="button" role="radio" aria-checked="false" aria-label="5 estrellas" data-v="5">★</button>
       </div>
       <label class="sr-only" for="resena-nombre">Tu nombre</label>
-      <input id="resena-nombre" type="text" name="nombre" placeholder="Tu nombre" required>
+      <input id="resena-nombre" type="text" name="nombre" placeholder="Tu nombre" autocomplete="name" required>
       <label class="sr-only" for="resena-negocio">Tu negocio (opcional)</label>
-      <input id="resena-negocio" type="text" name="negocio" placeholder="Tu negocio o empresa (opcional)">
+      <input id="resena-negocio" type="text" name="negocio" placeholder="Tu negocio o empresa (opcional)" autocomplete="organization">
       <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
       <label class="sr-only" for="resena-texto">Tu opinión</label>
       <textarea id="resena-texto" name="texto" rows="4" placeholder="¿Cómo ha sido trabajar conmigo?" required></textarea>
       <label class="privacy-check"><input type="checkbox" required> <span>He leído y acepto la <a href="#privacidad">política de privacidad</a> y que mi opinión se publique en esta web con mi nombre.</span></label>
       <button class="btn btn-primary" type="submit">Enviar opinión</button>
-      <p class="hint" aria-live="polite">La reviso y la publico en unos días.</p>
+      <p class="hint" id="resena-status" role="status" aria-live="polite" aria-atomic="true">La reviso y la publico en unos días.</p>
     </form>
   </div>
 </section>
@@ -868,21 +869,25 @@ button:disabled{cursor:not-allowed}
     <div class="contact-box reveal">
       <h2>¿Tienes un proyecto en mente?</h2>
       <p>Cuéntame qué necesitas y te respondo en menos de 24 horas.</p>
-      <form id="form-contacto" class="contact-form">
-        <input type="text" name="nombre" placeholder="Tu nombre" aria-label="Tu nombre" autocomplete="name" required>
-        <input type="email" name="email" placeholder="Tu email, para poder responderte" aria-label="Tu email" autocomplete="email" required>
+      <form id="form-contacto" class="contact-form" aria-label="Formulario de contacto">
+        <label class="sr-only" for="contacto-nombre">Tu nombre</label>
+        <input id="contacto-nombre" type="text" name="nombre" placeholder="Tu nombre" autocomplete="name" required>
+        <label class="sr-only" for="contacto-email">Tu correo electrónico</label>
+        <input id="contacto-email" type="email" name="email" placeholder="Tu email, para poder responderte" autocomplete="email" required>
         <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <select name="tipo" aria-label="¿Qué necesitas?" required>
+        <label class="sr-only" for="contacto-tipo">¿Qué necesitas?</label>
+        <select id="contacto-tipo" name="tipo" required>
           <option value="">¿Qué necesitas?</option>
           <option>Una aplicación de gestión</option>
           <option>Una web o reservas online</option>
           <option>Mantenimiento o mejoras</option>
           <option>Otro</option>
         </select>
-        <textarea name="mensaje" rows="4" placeholder="Cuéntame tu idea" aria-label="Cuéntame tu idea" required></textarea>
+        <label class="sr-only" for="contacto-mensaje">Cuéntame tu idea</label>
+        <textarea id="contacto-mensaje" name="mensaje" rows="4" placeholder="Cuéntame tu idea" required></textarea>
         <label class="privacy-check"><input type="checkbox" required> <span>He leído y acepto la <a href="#privacidad">política de privacidad</a>.</span></label>
         <button class="btn btn-primary" type="submit">Enviar</button>
-        <p class="hint" aria-live="polite">Te respondo en menos de 24 horas al email que me dejes.</p>
+        <p class="hint" id="contacto-status" role="status" aria-live="polite" aria-atomic="true">Te respondo en menos de 24 horas al email que me dejes.</p>
       </form>
       </div>
       <div class="contact-box links-box">
@@ -975,13 +980,18 @@ button:disabled{cursor:not-allowed}
 <script>
   // Animaciones al hacer scroll: se repiten cada vez que un elemento vuelve a entrar en pantalla,
   // tanto al bajar como al subir. Se ocultan solo cuando salen del todo, para que no parpadeen.
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting && e.intersectionRatio >= 0.12) e.target.classList.add('in');
-      else if (!e.isIntersecting) e.target.classList.remove('in');
-    });
-  }, { threshold: [0, 0.12] });
-  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  document.documentElement.classList.add('js');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting && e.intersectionRatio >= 0.12) e.target.classList.add('in');
+        else if (!e.isIntersecting) e.target.classList.remove('in');
+      });
+    }, { threshold: [0, 0.12], rootMargin: '0px 0px 100px 0px' });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+  }
 
   // ── Menú (en móvil se abre con el botón ☰) ──
   const menuBtn = document.querySelector('.menu-btn');
@@ -1098,6 +1108,7 @@ button:disabled{cursor:not-allowed}
   const enviar = async (form, payload, okMsg, btnText) => {
     const hint = form.querySelector('.hint');
     const btn = form.querySelector('button[type="submit"]');
+    form.setAttribute('aria-busy', 'true');
     btn.disabled = true;
     btn.textContent = 'Enviando...';
     hint.classList.remove('ok', 'error');
@@ -1118,6 +1129,7 @@ button:disabled{cursor:not-allowed}
       hint.innerHTML = 'No se ha podido enviar ahora mismo. Escríbeme a <a href="mailto:ignaciog2006@gmail.com">ignaciog2006@gmail.com</a> o por WhatsApp y te contesto enseguida.';
       return false;
     } finally {
+      form.removeAttribute('aria-busy');
       btn.disabled = false;
       btn.textContent = btnText;
     }
