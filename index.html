@@ -776,6 +776,7 @@ button:disabled{cursor:not-allowed}
 }
 
 </style>
+<link rel="stylesheet" href="css/portfolio-refinements.css">
 </head>
 <body>
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -914,8 +915,8 @@ button:disabled{cursor:not-allowed}
       <li class="card step reveal">
         <div class="step-num" aria-hidden="true">4</div>
         <h3>Entrega y acompañamiento</h3>
-        <p>Lo dejo funcionando y te enseño a usarlo. Después sigo a tu lado: durante 4 meses me encargo del soporte y el mantenimiento, arreglo cualquier fallo y te resuelvo las dudas.</p>
-        <span class="free">4 meses de soporte y mantenimiento gratis</span>
+        <p>Lo dejo funcionando y te enseño a usarlo. Después sigo a tu lado: durante los 4 meses siguientes tienes soporte gratuito para resolver dudas y corregir errores atribuibles al desarrollo original. El mantenimiento y las nuevas funcionalidades se contratan aparte.</p>
+        <span class="free">4 meses de soporte gratuito</span>
       </li>
     </ol>
   </div>
@@ -1002,8 +1003,8 @@ button:disabled{cursor:not-allowed}
       <details class="faq-item reveal">
         <summary>¿Qué pasa cuando terminan los 4 meses de soporte gratis?</summary>
         <div class="faq-a">
-          <p>Tu web o tu aplicación sigue funcionando igual; no deja de funcionar por eso.</p>
-          <p>Si quieres que siga encargándome de mantenerla, hacer cambios o añadir cosas nuevas, puedes seguir con un mantenimiento opcional. Lo hablamos y acordamos lo que mejor encaje con tu negocio.</p>
+          <p>Tu web o tu aplicación seguirá funcionando con normalidad; el soporte gratuito simplemente llegará a su fin.</p>
+          <p>Si quieres actualizaciones, copias de seguridad, supervisión o pequeños cambios, podrás contratar un plan de mantenimiento opcional. Las nuevas funcionalidades y los cambios de mayor alcance se valorarán y presupuestarán aparte.</p>
         </div>
       </details>
       <details class="faq-item reveal">
@@ -1350,6 +1351,9 @@ button:disabled{cursor:not-allowed}
     document.getElementById('invitacion-resena').textContent = '¿Has trabajado conmigo? Me encantará leer tu opinión.';
   } else {
     lista.style.display = 'none';
+    const reviewsTitle = document.querySelector('#opiniones h2');
+    if (reviewsTitle) reviewsTitle.textContent = '¿Has trabajado conmigo?';
+    document.getElementById('invitacion-resena').textContent = 'Si ya hemos trabajado juntos, me encantará conocer tu experiencia. Tu opinión puede ayudar a otros negocios a decidirse.';
   }
 
   let rating = 0;
