@@ -1061,7 +1061,18 @@ button:disabled{cursor:not-allowed}
     m.querySelectorAll('.pclose, .close-privacy').forEach((b) => b.addEventListener('click', () => closeModal(m)));
     m.addEventListener('click', (e) => {
       if (e.target === m) closeModal(m);
-      else if (e.target.closest('[data-close]')) closeModal(m, false);
+      else if (e.target.closest('[data-close]')) {
+        const action = e.target.closest('[data-close]');
+        const destination = action.getAttribute('href');
+        e.preventDefault();
+        closeModal(m, false);
+        const section = destination ? document.querySelector(destination) : null;
+        const heading = section && section.querySelector('h2');
+        if (heading) {
+          heading.setAttribute('tabindex', '-1');
+          heading.focus();
+        }
+      }
     });
     m.addEventListener('keydown', (e) => {
       if (e.key !== 'Tab') return;
