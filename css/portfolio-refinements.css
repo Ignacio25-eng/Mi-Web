@@ -852,3 +852,207 @@ p { text-wrap: pretty; }
 @media (prefers-reduced-motion: reduce) {
   .hero-visual .app-window { transform: none; }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO VIVO — el panel de la app se mueve: gira con el ratón, flota y
+   recibe reservas en directo. Luces y órbitas animadas detrás.
+   El movimiento lo pone el JS (variables --mx/--my y la agenda); sin JS
+   o con «reducir movimiento» se queda quieto y se ve igual de bien.
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero-vivo { --mx: 0; --my: 0; flex-direction: column; justify-content: center; }
+.hero-vivo > .container { display: flex; flex-direction: column; }
+
+/* Luces de fondo que se mueven despacio (morado y ámbar de la marca) */
+.hero-aurora { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.hero-aurora .au { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .55; will-change: transform; }
+.au-1 { width: 46vw; height: 46vw; max-width: 720px; max-height: 720px; right: -8vw; top: -14vw;
+  background: radial-gradient(circle, rgba(124,77,190,.55), transparent 65%); animation: auMove1 22s ease-in-out infinite alternate; }
+.au-2 { width: 34vw; height: 34vw; max-width: 540px; max-height: 540px; right: 6vw; bottom: -16vw;
+  background: radial-gradient(circle, rgba(245,140,11,.38), transparent 65%); animation: auMove2 26s ease-in-out infinite alternate; }
+.au-3 { width: 30vw; height: 30vw; max-width: 460px; max-height: 460px; left: -10vw; top: 10%;
+  background: radial-gradient(circle, rgba(92,55,150,.35), transparent 65%); animation: auMove3 30s ease-in-out infinite alternate; }
+@keyframes auMove1 { to { transform: translate(-9vw, 7vw) scale(1.15); } }
+@keyframes auMove2 { to { transform: translate(-12vw, -6vw) scale(.9); } }
+@keyframes auMove3 { to { transform: translate(8vw, -5vw) scale(1.2); } }
+
+/* Un foco de luz que sigue al ratón */
+.hero-spot { position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(520px circle at var(--sx, 72%) var(--sy, 45%), rgba(245,158,11,.075), transparent 60%);
+  transition: background .2s; }
+
+/* Entrada escalonada de los textos */
+.hero-vivo .hv-in { animation: hvIn .9s cubic-bezier(.2,.75,.2,1) both; animation-delay: calc(var(--d, 0) * 110ms + 120ms); }
+@keyframes hvIn { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+
+/* Etiqueta con </> como en la referencia */
+.hero-vivo .eyebrow { display: inline-flex; align-items: center; gap: 11px; border-radius: 999px; padding: 10px 18px 10px 14px;
+  font-size: .8rem; letter-spacing: .01em; font-weight: 600; text-transform: none; color: #EDE7F6;
+  border-color: rgba(167,146,205,.28); background: rgba(19,14,32,.72); }
+.eyebrow-code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-weight: 800; font-size: 1.05rem; letter-spacing: -.02em;
+  background: linear-gradient(90deg, #A47BE6, #F59E0B); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* Titular más contenido (como la referencia: 2-3 líneas) para que se vea también la fila de tecnologías */
+.hero.hero-vivo h1 { max-width: 760px; font-size: clamp(3rem, 4.9vw, 5.3rem); line-height: 1.02 !important; letter-spacing: -.05em; }
+.hero.hero-vivo .hero-lead { font-size: clamp(1.02rem, 1.15vw, 1.16rem); }
+@media (min-width: 821px) { .hero.hero-vivo .head { min-height: 0; } }
+
+/* El naranja del titular «respira» con un brillo que lo recorre */
+.hero-vivo h1 .gradient { background-size: 220% 100%; animation: hvShine 7s ease-in-out infinite; }
+@keyframes hvShine { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+/* Botones en píldora: el principal con degradado morado → ámbar */
+.hero-vivo .btn-row .btn { border-radius: 999px !important; padding: 15px 26px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
+.hero-vivo .btn-vivo { position: relative; overflow: hidden; isolation: isolate; color: #fff !important;
+  background: linear-gradient(100deg, #7C3AED 0%, #A855F7 30%, #F59E0B 100%) !important;
+  box-shadow: 0 12px 38px rgba(168,85,247,.32), 0 6px 26px rgba(245,158,11,.22), inset 0 1px 0 rgba(255,255,255,.25) !important; }
+.hero-vivo .btn-vivo svg { width: 20px; height: 20px; flex: none; transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+.hero-vivo .btn-vivo::after { content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(110deg, transparent 25%, rgba(255,255,255,.28) 50%, transparent 75%); transform: translateX(-120%);
+  animation: hvSweep 4.5s ease-in-out 2.2s infinite; }
+@keyframes hvSweep { 0%, 70% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+.hero-vivo .btn-vivo:hover { transform: translateY(-2px); box-shadow: 0 16px 46px rgba(168,85,247,.42), 0 8px 30px rgba(245,158,11,.3) !important; }
+.hero-vivo .btn-vivo:hover svg { transform: translate(3px, -3px) rotate(-8deg); }
+.btn-flecha { font-size: 1.35rem; line-height: 1; margin-left: 2px; transition: transform .25s; }
+.hero-vivo .btn-vivo:hover .btn-flecha { transform: translateX(4px); }
+
+/* ── El panel: entrada, flotación y giro 3D con el ratón ── */
+.hero-vivo .hero-visual { perspective: 1600px; }
+.app-stage { position: relative; z-index: 1; animation: hvRise 1.3s cubic-bezier(.16,.8,.2,1) .35s both; }
+@keyframes hvRise {
+  from { opacity: 0; transform: translateY(60px) scale(.9) rotateX(18deg); }
+  to   { opacity: 1; transform: none; }
+}
+.app-float { animation: hvFloat 7s ease-in-out 1.7s infinite; }
+@keyframes hvFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+.hero-vivo .hero-visual .app-window {
+  transform: perspective(1600px) rotateY(calc(-4deg + var(--mx) * 16deg)) rotateX(calc(2deg - var(--my) * 12deg)) scale(1.04);
+  transition: box-shadow .3s; will-change: transform; }
+/* Reflejo de luz que se desliza por la pantalla al mover el ratón */
+.hero-vivo .app-window::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 5; border-radius: inherit;
+  background: radial-gradient(circle at calc(50% + var(--mx) * 120%) calc(25% + var(--my) * 120%), rgba(255,255,255,.11), transparent 42%); }
+/* Borde que se ilumina dando la vuelta */
+.hero-vivo .app-window::before { content: ""; position: absolute; inset: 0; z-index: 6; border-radius: inherit; padding: 1px; pointer-events: none;
+  background: conic-gradient(from var(--ang, 0deg), transparent 0 70%, rgba(245,158,11,.9) 80%, rgba(168,85,247,.9) 88%, transparent 96%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude;
+  animation: hvBorde 6s linear infinite; }
+@property --ang { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+@keyframes hvBorde { to { --ang: 360deg; } }
+
+/* Los chips flotan a otra profundidad (se mueven más que el panel) */
+.hero-vivo .float-chip { translate: calc(var(--mx) * -34px) calc(var(--my) * -24px); z-index: 7; }
+.hero-vivo .chip-top { animation: hvChip 6s ease-in-out 1.8s infinite, hvAparece .8s ease 1.2s both; }
+.hero-vivo .chip-bottom { animation: hvChip 6.8s ease-in-out 2.4s infinite reverse, hvAparece .8s ease 1.45s both; }
+@keyframes hvChip { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+@keyframes hvAparece { from { opacity: 0; } to { opacity: 1; } }
+
+/* Órbitas que giran con puntos de luz */
+.hero-vivo .visual-orbit { translate: calc(var(--mx) * 18px) calc(var(--my) * 14px); }
+.hero-vivo .orbit-one { animation: hvOrbit 38s linear infinite; }
+.hero-vivo .orbit-two { animation: hvOrbit 58s linear infinite reverse; }
+@keyframes hvOrbit { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+.visual-orbit .sat { position: absolute; top: -5px; left: calc(50% - 5px); width: 10px; height: 10px; border-radius: 50%;
+  background: #FBBF24; box-shadow: 0 0 12px 3px rgba(245,158,11,.75), 0 0 34px 8px rgba(245,158,11,.25); }
+.orbit-two .sat { background: #C4A1F5; box-shadow: 0 0 12px 3px rgba(168,85,247,.7), 0 0 30px 8px rgba(168,85,247,.22); }
+.orbit-two .sat-b { top: auto; bottom: -4px; width: 7px; height: 7px; left: calc(30% - 3px);
+  background: #FBBF24; box-shadow: 0 0 10px 2px rgba(245,158,11,.7); }
+.hero-vivo .hero-visual::after { animation: hvBlob 16s ease-in-out infinite alternate; }
+@keyframes hvBlob {
+  from { border-radius: 44% 56% 58% 42% / 42% 46% 54% 58%; transform: rotate(-8deg); }
+  to   { border-radius: 58% 42% 45% 55% / 52% 58% 42% 48%; transform: rotate(6deg); }
+}
+
+/* ── Dentro del panel: la agenda «en directo» ── */
+.agenda-list { position: relative; overflow: hidden; }
+.hero-vivo .agenda-row { max-height: 60px; transition: max-height .55s ease, min-height .55s ease, opacity .45s ease, border-color .45s; }
+.hero-vivo .agenda-list > .agenda-row { animation: hvRow .6s cubic-bezier(.2,.75,.2,1) both; }
+.hero-vivo .agenda-list > .agenda-row:nth-child(1) { animation-delay: 1.25s; }
+.hero-vivo .agenda-list > .agenda-row:nth-child(2) { animation-delay: 1.4s; }
+.hero-vivo .agenda-list > .agenda-row:nth-child(3) { animation-delay: 1.55s; }
+.hero-vivo .agenda-list > .agenda-row.nueva { animation: hvRowNueva 2.4s cubic-bezier(.2,.75,.2,1) both; }
+@keyframes hvRow { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: none; } }
+@keyframes hvRowNueva {
+  0%   { opacity: 0; transform: translateY(14px) scale(.97); background: rgba(245,158,11,.22); }
+  25%  { opacity: 1; transform: none; background: rgba(245,158,11,.16); }
+  100% { background: transparent; }
+}
+.hero-vivo .agenda-row.sale { max-height: 0; min-height: 0; opacity: 0; border-top-color: transparent; }
+.agenda-row em.pend { color: #F0C46E !important; }
+.hero-vivo .agenda-row:last-child em:not(.pend) { color: #9BD7AE; }
+.bar-d { background: #E879F9; }
+.stat-card strong { transition: color .3s; display: inline-block; }
+.stat-card strong.sube { animation: hvSube .7s cubic-bezier(.2,.8,.2,1); color: #FBBF24; }
+@keyframes hvSube { 0% { transform: translateY(8px) scale(.8); opacity: .2; } 60% { transform: translateY(-3px) scale(1.15); opacity: 1; } 100% { transform: none; } }
+.live-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #83D6A0; margin-right: 6px; vertical-align: middle;
+  box-shadow: 0 0 0 0 rgba(131,214,160,.6); animation: hvPulso 2s ease-out infinite; }
+@keyframes hvPulso { to { box-shadow: 0 0 0 8px rgba(131,214,160,0); } }
+.app-foot i { animation: hvPulso 2s ease-out infinite; }
+
+/* Aviso de «Nueva reserva online» que entra en el panel */
+.app-toast { position: absolute; z-index: 8; top: 34%; right: -28px; display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; border-radius: 11px; background: rgba(34,26,52,.97); border: 1px solid rgba(245,158,11,.5);
+  box-shadow: 0 14px 34px rgba(0,0,0,.45), 0 0 26px rgba(245,158,11,.18); font-size: .64rem; color: #EDE7F6;
+  opacity: 0; transform: translateY(-12px) scale(.96); pointer-events: none; transition: opacity .35s, transform .45s cubic-bezier(.2,.8,.2,1); }
+.app-toast.ver { opacity: 1; transform: none; }
+.app-toast span:last-child { display: grid; gap: 2px; }
+.app-toast small { color: #B7AEC6; font-size: .58rem; }
+.toast-ico { color: #FBBF24; font-size: .7rem; animation: hvPulsoTxt 1s ease-in-out infinite alternate; }
+@keyframes hvPulsoTxt { from { opacity: .45; } to { opacity: 1; } }
+
+/* ── Fila de tecnologías con iconos (como la referencia) ── */
+.hero-tech { list-style: none; margin: clamp(34px, 5vh, 58px) auto 0; padding: 0; width: 100%; max-width: 1180px;
+  display: flex; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+.hero-tech li { display: flex; flex-direction: column; align-items: center; gap: 9px; padding: 6px clamp(14px, 2.2vw, 34px);
+  color: #C9C2D6; font-size: .84rem; font-weight: 500; position: relative;
+  animation: hvIn .7s cubic-bezier(.2,.75,.2,1) both; animation-delay: calc(1.5s + var(--i) * 80ms); }
+.hero-tech li + li::before { content: ""; position: absolute; left: 0; top: 14%; bottom: 14%; width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(167,146,205,.3), transparent); }
+.tech-ico { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 13px;
+  background: linear-gradient(160deg, rgba(36,28,56,.9), rgba(20,15,32,.9)); border: 1px solid rgba(167,146,205,.2);
+  color: #F5B544; transition: transform .3s cubic-bezier(.2,.8,.2,1), border-color .3s, box-shadow .3s; }
+.tech-ico svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.tech-txt { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-weight: 800; font-size: .86rem; letter-spacing: -.03em;
+  background: linear-gradient(135deg, #C4A1F5, #F59E0B); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero-tech li:nth-child(even) .tech-ico:not(.tech-txt) { color: #B892F0; }
+.hero-tech li:hover .tech-ico { transform: translateY(-5px); border-color: rgba(245,158,11,.55); box-shadow: 0 10px 26px rgba(245,158,11,.18); }
+
+/* «Descubre más» con ratoncito */
+.hero-scroll { margin: clamp(26px, 4vh, 44px) auto 0; display: flex; flex-direction: column; align-items: center; gap: 10px;
+  color: #BDB5CB; font-size: .82rem; text-decoration: none; position: relative; z-index: 1;
+  animation: hvIn .8s ease 2.3s both; transition: color .2s; }
+.hero-scroll:hover { color: #FBBF24; }
+.hero-scroll .mouse { width: 24px; height: 38px; border: 1.6px solid currentColor; border-radius: 13px; display: flex; justify-content: center; padding-top: 7px; opacity: .85; }
+.hero-scroll .mouse i { width: 3px; height: 7px; border-radius: 3px; background: #FBBF24; animation: hvRueda 1.8s ease-in-out infinite; }
+@keyframes hvRueda { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(11px); opacity: 0; } 100% { transform: translateY(0); opacity: 0; } }
+
+/* ── Pantallas medianas y móvil ── */
+@media (max-width: 820px) {
+  .hero-tech li { padding: 6px 14px; font-size: .78rem; }
+  .hero-tech li + li::before { display: none; }
+  .hero-scroll { display: none; }
+}
+@media (max-width: 640px) {
+  .hero-vivo .eyebrow { font-size: .72rem; padding: 8px 14px 8px 12px; }
+  .hero-vivo .btn-row .btn { width: 100%; }
+  .hero-tech { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 14px; margin-top: 26px; }
+  .hero-tech li { padding: 2px; font-size: .68rem; text-align: center; }
+  .tech-ico { width: 40px; height: 40px; border-radius: 11px; }
+  .app-toast { top: 30%; right: 6px; font-size: .56rem; padding: 7px 10px; }
+  .app-toast small { font-size: .5rem; }
+  .hero-vivo .float-chip { translate: none; }
+}
+@media (hover: none), (pointer: coarse) {
+  .hero-vivo .hero-visual .app-window { transform: perspective(1600px) rotateY(-3deg) rotateX(1deg); }
+}
+@media (max-width: 820px) {
+  .hero-vivo .hero-visual .app-window { transform: none; }
+}
+
+/* Con «reducir movimiento» activado en el sistema: todo quieto */
+@media (prefers-reduced-motion: reduce) {
+  .hero-aurora .au, .app-float, .hero-vivo .float-chip, .hero-vivo .visual-orbit, .hero-vivo .hero-visual::after,
+  .hero-vivo .app-window::before, .hero-vivo h1 .gradient, .hero-vivo .btn-vivo::after, .live-dot, .app-foot i,
+  .hero-scroll .mouse i, .toast-ico { animation: none !important; }
+  .hero-vivo .hero-visual .app-window { transform: none; }
+  .hero-vivo .app-window::before { display: none; }
+}
