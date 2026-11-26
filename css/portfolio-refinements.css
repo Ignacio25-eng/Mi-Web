@@ -494,3 +494,106 @@ p { text-wrap: pretty; }
   .app-user { font-size: .57rem; }
   .float-chip { font-size: .53rem; }
 }
+
+
+/* AJUSTE VISIBLE DE CABECERA Y HERO — escritorio + móvil */
+.topbar-in {
+  min-height: 66px !important;
+  padding-top: 7px !important;
+  padding-bottom: 7px !important;
+}
+.topbar .logo {
+  width: 39px !important;
+  height: 39px !important;
+}
+.topbar .nav-links {
+  gap: 25px !important;
+}
+.hero {
+  padding-top: 48px !important;
+  padding-bottom: 46px !important;
+}
+.hero .head {
+  gap: clamp(28px, 3.2vw, 46px) !important;
+}
+.hero .eyebrow {
+  margin-bottom: 16px !important;
+}
+.hero h1 {
+  line-height: 1.01 !important;
+}
+.hero .hero-lead {
+  margin-top: 15px !important;
+  line-height: 1.62 !important;
+}
+.hero .zona {
+  margin-top: 12px !important;
+}
+.hero .btn-row {
+  margin-top: 21px !important;
+  gap: 12px !important;
+}
+.hero .hero-note {
+  margin-top: 23px !important;
+}
+/* Explorar proyectos: segundo CTA, con acento propio y respuesta clara al clic */
+.hero .btn-row a.btn[href="#proyectos"] {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(255,176,32,.72) !important;
+  color: #FFE2A3 !important;
+  background: linear-gradient(135deg, rgba(245,158,11,.16), rgba(116,72,168,.16)) !important;
+  box-shadow: 0 7px 22px rgba(245,158,11,.13), inset 0 1px 0 rgba(255,255,255,.07) !important;
+  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease, background .16s ease !important;
+}
+.hero .btn-row a.btn[href="#proyectos"]:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent 20%, rgba(255,190,75,.22) 50%, transparent 80%);
+  transform: translateX(-120%);
+  transition: transform .45s ease;
+}
+.hero .btn-row a.btn[href="#proyectos"]:hover {
+  transform: translateY(-3px) !important;
+  border-color: #FFC04D !important;
+  background: linear-gradient(135deg, rgba(245,158,11,.26), rgba(116,72,168,.22)) !important;
+  box-shadow: 0 12px 30px rgba(245,158,11,.24), 0 0 0 3px rgba(245,158,11,.08) !important;
+}
+.hero .btn-row a.btn[href="#proyectos"]:hover:before {
+  transform: translateX(120%);
+}
+.hero .btn-row a.btn[href="#proyectos"]:active {
+  transform: translateY(1px) scale(.95) !important;
+  border-color: #FFD27A !important;
+  background: rgba(245,158,11,.32) !important;
+  box-shadow: 0 0 0 5px rgba(245,158,11,.16), 0 3px 10px rgba(245,158,11,.2) !important;
+}
+.hero .btn-row a.btn[href="#proyectos"]:focus-visible {
+  outline: 3px solid rgba(255,190,75,.75);
+  outline-offset: 4px;
+}
+@media (max-width: 820px) {
+  .hero { padding-top: 38px !important; padding-bottom: 34px !important; }
+  .hero .head { gap: 24px !important; }
+  .hero .hero-visual { padding-top: 14px !important; }
+}
+@media (max-width: 640px) {
+  .topbar-in { min-height: 62px !important; }
+  .topbar .logo { width: 36px !important; height: 36px !important; }
+  .hero { padding-top: 30px !important; padding-bottom: 28px !important; }
+  .hero .eyebrow { margin-bottom: 13px !important; }
+  .hero h1 { line-height: .99 !important; }
+  .hero .hero-lead { margin-top: 12px !important; line-height: 1.55 !important; }
+  .hero .zona { margin-top: 10px !important; line-height: 1.5 !important; }
+  .hero .btn-row { margin-top: 17px !important; gap: 9px !important; }
+  .hero .btn-row a.btn { min-height: 49px !important; }
+  .hero .hero-note { margin-top: 17px !important; }
+  .hero .hero-visual { padding: 14px 0 18px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero .btn-row a.btn[href="#proyectos"],
+  .hero .btn-row a.btn[href="#proyectos"]:before { transition: none !important; }
+}
