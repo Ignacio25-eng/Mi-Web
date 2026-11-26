@@ -160,3 +160,151 @@ p { text-wrap: pretty; }
   .project .shot, .services .card:after { transition: none; }
   .app-window:hover { box-shadow: 0 30px 90px rgba(0,0,0,.48), 0 0 55px rgba(99,66,143,.16); }
 }
+
+
+/* IG Digital Studio — pulido móvil y microinteracciones v3 */
+:where(.project.card,.services .card,.step.card,.faq-item,.stack span,.btn,.live,.wa-float) {
+  -webkit-tap-highlight-color: transparent;
+}
+.project.card,
+.services .card,
+.step.card,
+.faq-item,
+.btn,
+.live,
+.wa-float {
+  transition-timing-function: cubic-bezier(.2,.7,.2,1);
+}
+.project.card:active,
+.services .card:active,
+.step.card:active {
+  transform: scale(.99);
+}
+.project.card .shot {
+  transition: transform .35s cubic-bezier(.2,.7,.2,1), border-color .25s ease, filter .25s ease;
+}
+@media (hover:hover) and (pointer:fine) {
+  .project.card:hover .shot { transform: scale(1.015); filter: saturate(1.06); }
+  .stack span:hover { transform: translateY(-2px); }
+  .services .card:hover { transform: translateY(-3px); }
+}
+.btn:active,
+.live:active { transform: translateY(1px) scale(.985); }
+.btn:focus-visible,
+.project.card:focus-visible,
+.services .card:focus-visible,
+.live:focus-visible,
+.menu-btn:focus-visible,
+.wa-float:focus-visible {
+  outline: 2px solid #FBBF24;
+  outline-offset: 4px;
+}
+
+/* La demo del producto conserva su contenido, pero gana legibilidad en móvil */
+.app-window { min-width: 0; }
+.app-top { min-width: 0; }
+.app-brand, .app-user { min-width: 0; }
+.app-user { white-space: nowrap; }
+.app-main, .app-body { min-width: 0; }
+.agenda-row > span { min-width: 0; }
+.agenda-row b, .agenda-row small { overflow-wrap: anywhere; }
+.float-chip { max-width: min(74%, 230px); white-space: nowrap; }
+.hero-visual { min-width: 0; }
+.project.card { -webkit-touch-callout: none; }
+
+/* Diálogos y galerías: área táctil y lectura cómoda */
+.pclose, .close-privacy {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+}
+.pbox .pcontent { min-width: 0; }
+.pbox .pcontent img,
+.gallery img { max-width: 100%; height: auto; }
+.gallery a:focus-visible { outline: 2px solid #FBBF24; outline-offset: 4px; }
+
+/* Botón flotante: respeta la zona segura del iPhone */
+.wa-float {
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 60;
+  touch-action: manipulation;
+}
+
+@media (max-width: 640px) {
+  .hero { padding-top: 42px; padding-bottom: 38px; }
+  .hero-copy { min-width: 0; }
+  .hero .btn-row { margin-top: 25px; gap: 11px; }
+  .hero .btn-row .btn { min-height: 52px; }
+  .hero-note { margin-top: 26px; }
+  .hero-visual { padding: 18px 0 24px; }
+  .app-window {
+    border-radius: 14px;
+    transform: none;
+    box-shadow: 0 18px 48px rgba(0,0,0,.38), 0 0 34px rgba(99,66,143,.12);
+  }
+  .app-body { min-height: 0; }
+  .app-main { padding: 14px 9px 10px; }
+  .app-heading { align-items: center; }
+  .app-heading h2 { font-size: clamp(.94rem, 4vw, 1.08rem); }
+  .app-heading p { line-height: 1.4; }
+  .today-pill { flex: 0 0 auto; }
+  .app-stats { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .stat-card { min-width: 0; }
+  .stat-card strong { overflow-wrap: anywhere; }
+  .agenda-card { min-width: 0; }
+  .agenda-head { gap: 8px; align-items: center; }
+  .agenda-row { grid-template-columns: 31px 3px minmax(0,1fr) auto; gap: 6px; }
+  .agenda-row em { white-space: nowrap; }
+  .app-foot { flex-wrap: wrap; line-height: 1.5; }
+  .float-chip { font-size: .58rem; }
+  .chip-top { top: 0; right: 0; }
+  .chip-bottom { bottom: 0; left: 0; }
+  .orbit-one { width: min(390px, 100vw); height: min(390px, 100vw); }
+  .orbit-two { width: min(470px, 120vw); height: min(470px, 120vw); }
+  .stack { gap: 8px; }
+  .stack span { padding: 7px 10px; font-size: .75rem; }
+  .projects { gap: 14px; }
+  .project.card { padding: 13px; gap: 11px; border-radius: 14px; }
+  .project .shot { aspect-ratio: 16 / 9; object-position: center top; }
+  .project h3 { font-size: 1.08rem; }
+  .project p, .project ul { font-size: .88rem; line-height: 1.65; }
+  .project .live { min-height: 40px; display: inline-flex; align-items: center; }
+  .services { gap: 12px; }
+  .services .card { padding: 21px 20px 52px; min-height: 0; }
+  .services .card:after { left: 20px; bottom: 18px; }
+  .steps { gap: 12px; }
+  .step.card { min-height: 0; }
+  .pmodal { padding: max(10px, env(safe-area-inset-top)) 8px max(10px, env(safe-area-inset-bottom)); }
+  .pbox { width: 100%; max-height: calc(100dvh - 20px); padding: 56px 16px 22px; }
+  .pclose { top: 8px; right: 8px; }
+  .gallery { gap: 12px; }
+  .contact-form { gap: 13px; }
+  .contact-form input:not([type="checkbox"]),
+  .contact-form select,
+  .contact-form textarea { min-height: 50px; font-size: 16px; }
+  .contact-form textarea { min-height: 125px; }
+  .wa-float { width: 54px; height: 54px; }
+}
+@media (max-width: 390px) {
+  .container { padding-left: 16px; padding-right: 16px; }
+  .brand { gap: 8px; }
+  .brand small { letter-spacing: .09em; }
+  .app-top { padding-inline: 8px; }
+  .app-brand { gap: 6px; font-size: .68rem; }
+  .app-user { gap: 4px; font-size: .58rem; }
+  .app-sidebar { width: 33px; }
+  .app-main { padding-inline: 7px; }
+  .app-heading { gap: 5px; }
+  .today-pill { padding: 5px 6px; }
+  .agenda-row { grid-template-columns: 28px 3px minmax(0,1fr) auto; gap: 4px; }
+  .agenda-row em { font-size: .4rem; }
+  .float-chip { max-width: 70%; font-size: .54rem; padding: 7px 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project.card, .project.card .shot, .services .card, .step.card,
+  .stack span, .btn, .live, .wa-float { transition: none !important; }
+  .project.card:active, .services .card:active, .step.card:active { transform: none; }
+}
