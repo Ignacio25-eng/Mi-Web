@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">IG Digital Studio</title>
+  <desc id="desc">Isotipo geométrico original formado por las letras I y G.</desc>
+  <defs>
+    <linearGradient id="amber" x1="18" y1="14" x2="108" y2="112" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFD36C"/>
+      <stop offset=".52" stop-color="#F59E0B"/>
+      <stop offset="1" stop-color="#D97706"/>
+    </linearGradient>
+  </defs>
+  <rect x="5" y="5" width="118" height="118" rx="27" fill="#100D1B" stroke="#8F70B8" stroke-opacity=".38" stroke-width="2"/>
+  <path d="M32 29h64v13H45v44h20V69H54V56h39v43H32z" fill="url(#amber)"/>
+  <path d="M32 29h13v13H32zM80 86h13v13H80z" fill="#FFF2D6"/>
+  <path d="M45 42 32 55M96 42 83 55M45 86 32 99" stroke="#F59E0B" stroke-width="3" stroke-linecap="square" opacity=".8"/>
+  <path d="M64 13v8M115 64h-8M64 115v-8M13 64h8" stroke="#B99BD9" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+</svg>
