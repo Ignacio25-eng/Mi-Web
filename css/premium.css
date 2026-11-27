@@ -198,6 +198,23 @@ main#contenido { position: relative; }
 .fe-2 { top: 10px; right: 10px; border-top-width: 2px; border-right-width: 2px; border-top-right-radius: 6px; }
 .fe-3 { bottom: 52px; left: 10px; border-bottom-width: 2px; border-left-width: 2px; border-bottom-left-radius: 6px; }
 .fe-4 { bottom: 52px; right: 10px; border-bottom-width: 2px; border-right-width: 2px; border-bottom-right-radius: 6px; }
+/* Con la foto real del setup: la foto (apaisada) va a todo el ancho de la tarjeta, encima del texto */
+.duo-sobre--foto { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+.duo-sobre--foto .sobre-foto { position: relative; top: auto; aspect-ratio: 16 / 10; border-radius: 16px; border-color: rgba(245, 158, 11, .3);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .35); }
+.sobre-foto.con-foto picture { position: absolute; inset: 0; }
+/* En reposo sin transformar (con una transformación permanente, algunos equipos sin aceleración gráfica no la pintan);
+   el zoom suave solo existe al pasar el ratón */
+.sobre-foto.con-foto picture img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; transition: transform 1.4s var(--ig-suave); }
+@media (hover: hover) and (pointer: fine) {
+  .duo-sobre--foto:hover .sobre-foto picture img { transform: scale(1.04); }
+}
+.sobre-foto.con-foto figcaption { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; display: flex; justify-content: space-between; align-items: baseline;
+  flex-wrap: wrap; gap: 4px 12px; padding: 40px 20px 15px; border-top: 0; background: linear-gradient(180deg, transparent, rgba(8, 6, 14, .9)); }
+.foto-firma { color: #F3EEF9; font-weight: 700; font-size: .86rem; }
+.foto-lugar { color: #FBC45E; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.sobre-foto.con-foto .foto-esquina { z-index: 3; }
+.sobre-foto.con-foto .fe-3, .sobre-foto.con-foto .fe-4 { bottom: 10px; }
 .sobre-confianza { list-style: none; margin: 20px 0 0; padding: 18px 0 0; display: grid; gap: 12px; border-top: 1px solid var(--ig-linea); }
 .sobre-confianza li { position: relative; display: grid; gap: 1px; padding-left: 32px; }
 .sobre-confianza li::before { content: "✓"; position: absolute; left: 0; top: 2px; width: 21px; height: 21px; display: grid; place-items: center; border-radius: 50%;

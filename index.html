@@ -777,7 +777,7 @@ button:disabled{cursor:not-allowed}
 
 </style>
 <link rel="stylesheet" href="css/portfolio-refinements.css?v=20261127-1">
-<link rel="stylesheet" href="css/premium.css?v=20261127-2">
+<link rel="stylesheet" href="css/premium.css?v=20261127-4">
 </head>
 <body>
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -991,15 +991,12 @@ button:disabled{cursor:not-allowed}
 
 <section class="sx-duo">
   <div class="container duo-grid">
-  <div id="sobre-mi" class="duo-sobre reveal">
-    <!-- FOTO DEL SETUP: cuando tengas la foto real de tu espacio de trabajo, guárdala como img/setup.jpg
-         y sustituye el contenido de <figure class="sobre-foto"> por:
-         <img src="img/setup.jpg" alt="Mi espacio de trabajo" loading="lazy" decoding="async" width="800" height="1000">
-         y añade la clase «con-foto» a la etiqueta <figure>. El marco y la luz ya están preparados. -->
-    <figure class="sobre-foto" aria-hidden="true">
-      <span class="foto-esquina fe-1"></span><span class="foto-esquina fe-2"></span><span class="foto-esquina fe-3"></span><span class="foto-esquina fe-4"></span>
-      <div class="sobre-marca"><img src="img/logo.png" alt="" loading="lazy" decoding="async"><span>IG<b>.</b> DIGITAL STUDIO</span></div>
-      <figcaption>Ignacio Garrido · IG Digital Studio</figcaption>
+  <div id="sobre-mi" class="duo-sobre duo-sobre--foto reveal">
+    <!-- Foto real del espacio de trabajo (img/setup.webp con img/setup.jpg de respaldo). -->
+    <figure class="sobre-foto con-foto">
+      <span class="foto-esquina fe-1" aria-hidden="true"></span><span class="foto-esquina fe-2" aria-hidden="true"></span><span class="foto-esquina fe-3" aria-hidden="true"></span><span class="foto-esquina fe-4" aria-hidden="true"></span>
+      <picture><source srcset="img/setup.webp" type="image/webp"><img src="img/setup.jpg" width="1400" height="1050" alt="Mi espacio de trabajo: dos monitores con código, teclado y luces naranjas y moradas" loading="lazy" decoding="async"></picture>
+      <figcaption><span class="foto-firma">Ignacio Garrido · IG Digital Studio</span><span class="foto-lugar">Mi espacio de trabajo</span></figcaption>
     </figure>
     <div class="sobre-texto">
       <h2 class="sx-sub">Sobre <span>mí</span></h2>
