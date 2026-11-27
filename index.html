@@ -776,7 +776,7 @@ button:disabled{cursor:not-allowed}
 }
 
 </style>
-<link rel="stylesheet" href="css/portfolio-refinements.css?v=20261126-7">
+<link rel="stylesheet" href="css/portfolio-refinements.css?v=20261127-1">
 </head>
 <body>
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -827,31 +827,33 @@ button:disabled{cursor:not-allowed}
 </div></header>
 
 <div class="container layout">
-  <div id="servicios">
-    <p class="label reveal">Servicios</p>
-    <h2 class="reveal">Qué hago</h2>
-    <div class="services">
-      <div class="card reveal">
-        <div class="icon">▦</div>
-        <h3>Aplicaciones de gestión</h3>
+  <div id="servicios" class="sx-servicios">
+    <svg class="sx-curva" viewBox="0 0 600 400" aria-hidden="true" preserveAspectRatio="none"><path d="M-20 360C120 330 160 120 330 70S560 40 640 -10"/></svg>
+    <h2 class="sx-titulo reveal">¿Qué puedo hacer <span>por ti?</span></h2>
+    <div class="svc-grid">
+      <div class="svc reveal">
+        <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 9 4.5-9 4.5-9-4.5L12 3Z"/><path d="m3 12 9 4.5 9-4.5M3 16.5 12 21l9-4.5"/></svg></span>
+        <div><h3>Aplicaciones de gestión</h3>
         <p>Citas, stock, caja, personal o facturación, adaptados a cómo trabaja tu negocio.</p>
+        <span class="svc-mas" aria-hidden="true">Ver más →</span></div>
       </div>
-      <div class="card reveal">
-        <div class="icon">◎</div>
-        <h3>Webs y reservas online</h3>
+      <div class="svc reveal">
+        <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span>
+        <div><h3>Webs y reservas online</h3>
         <p>Páginas de presentación y sistemas de reserva conectados a tu agenda, sin trabajo duplicado.</p>
+        <span class="svc-mas" aria-hidden="true">Ver más →</span></div>
       </div>
-      <div class="card reveal">
-        <div class="icon">⌁</div>
-        <h3>Automatización y mejoras</h3>
+      <div class="svc reveal">
+        <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg></span>
+        <div><h3>Automatización y mejoras</h3>
         <p>Conecto tareas y herramientas, reduzco trabajo repetitivo y mantengo tus sistemas al día.</p>
+        <span class="svc-mas" aria-hidden="true">Ver más →</span></div>
       </div>
     </div>
   </div>
 
   <div id="proyectos">
-    <p class="label reveal">Trabajos</p>
-    <h2 class="reveal">Proyectos</h2>
+    <h2 class="sx-titulo reveal">Proyectos <span>destacados</span></h2>
     <div class="projects projects-bento">
       <article class="card project project-star reveal">
         <div class="p-info">
@@ -918,60 +920,62 @@ button:disabled{cursor:not-allowed}
   </div>
 </div>
 
-<section id="proceso" class="process">
+<section id="proceso" class="sx-proceso">
   <div class="container">
-    <p class="label reveal">Cómo trabajo</p>
-    <h2 class="reveal">De la idea a algo que funciona, paso a paso</h2>
-    <p class="intro reveal">Sin tecnicismos ni sorpresas: sabes en todo momento en qué punto está tu proyecto y puedes opinar en cada fase.</p>
-    <ol class="steps">
-      <li class="card step reveal">
-        <div class="step-num" aria-hidden="true">1</div>
-        <h3>Hablamos</h3>
-        <p>Me cuentas tu idea como te resulte más cómodo: por email, WhatsApp, videollamada o en persona. Te escucho, te pregunto lo necesario para entender cómo trabajas y qué necesitas de verdad.</p>
-        <span class="free">Las reuniones no tienen coste</span>
-      </li>
-      <li class="card step reveal">
-        <div class="step-num" aria-hidden="true">2</div>
-        <h3>Te propongo un plan</h3>
-        <p>Te explico con palabras sencillas qué voy a hacer, cómo va a quedar y cuánto tiempo me llevará. Si algo no te encaja, lo ajustamos antes de empezar.</p>
-      </li>
-      <li class="card step reveal">
-        <div class="step-num" aria-hidden="true">3</div>
-        <h3>Lo construimos juntos</h3>
-        <p>Te enseño cada parte en cuanto la termino para que la pruebes y me digas qué cambiarías. Y si quieres ver cómo va en cualquier otro momento, solo tienes que pedírmelo.</p>
-      </li>
-      <li class="card step reveal">
-        <div class="step-num" aria-hidden="true">4</div>
-        <h3>Entrega y acompañamiento</h3>
-        <p>Lo dejo funcionando y te enseño a usarlo. Después sigo a tu lado: durante los 4 meses siguientes tienes soporte gratuito para resolver dudas y corregir errores atribuibles al desarrollo original. El mantenimiento y las nuevas funcionalidades se contratan aparte.</p>
-        <span class="free">4 meses de soporte gratuito</span>
-      </li>
-    </ol>
-  </div>
-</section>
-
-
-
-<section id="sobre-mi" class="about">
-  <div class="container">
-    <p class="label reveal">Sobre mí</p>
-    <h2 class="reveal">Desarrollador en formación, con ganas de resolver problemas reales</h2>
-    <p class="reveal">Soy Ignacio Garrido Martínez, tengo 20 años y estudio Desarrollo de Aplicaciones Multiplataforma (DAM), con una base sólida en Java, C# y SQL, y ahora programo a diario con .NET MAUI.</p>
-    <p class="reveal">Soy desarrollador de aplicaciones en prácticas en Infosersistemas, en remoto, donde me encargo de las pruebas de las aplicaciones. También desarrollo por mi cuenta una aplicación de gestión para una peluquería, en C# y .NET MAUI, conectada a su web de reservas.</p>
-    <p class="reveal">Me interesa crear software útil y fácil de usar, y acompañar al cliente desde la idea hasta que la herramienta funciona en su día a día. Mi objetivo a medio plazo es especializarme en ciberseguridad e inteligencia artificial.</p>
-
-    <div class="about-signals reveal" aria-label="Perfil y tecnologías">
-      <div class="about-signal"><span class="signal-kicker">FORMACIÓN</span><strong>DAM</strong><small>Desarrollo de Aplicaciones Multiplataforma</small></div>
-      <div class="about-signal"><span class="signal-kicker">TECNOLOGÍAS</span><strong>C# · Java · SQL</strong><small>.NET MAUI y desarrollo web</small></div>
-      <div class="about-signal"><span class="signal-kicker">ENFOQUE</span><strong>Software útil</strong><small>Pruebas, experiencia de uso y mejora continua</small></div>
+    <h2 class="sx-titulo reveal">Así es mi <span>proceso de trabajo</span></h2>
+    <p class="sx-intro reveal">Sin tecnicismos ni sorpresas: sabes en todo momento en qué punto está tu proyecto y puedes opinar en cada fase.</p>
+    <div class="px-fila">
+      <ol class="px-pasos">
+        <li class="px-paso reveal">
+          <span class="px-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.6 8.6 0 0 1-3.9-.9L3 20l1.1-4.6A8.4 8.4 0 1 1 21 11.5Z"/></svg></span>
+          <h3><b>1.</b> Hablamos</h3>
+          <p>Me cuentas tu idea por email, WhatsApp, videollamada o en persona, y entiendo cómo trabajas y qué necesitas de verdad.</p>
+          <span class="free">Las reuniones no tienen coste</span>
+        </li>
+        <li class="px-paso reveal">
+          <span class="px-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></span>
+          <h3><b>2.</b> Te propongo un plan</h3>
+          <p>Te explico con palabras sencillas qué voy a hacer, cómo va a quedar y cuánto tiempo me llevará. Si algo no encaja, lo ajustamos antes de empezar.</p>
+        </li>
+        <li class="px-paso reveal">
+          <span class="px-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></svg></span>
+          <h3><b>3.</b> Lo construimos juntos</h3>
+          <p>Te enseño cada parte en cuanto la termino para que la pruebes y me digas qué cambiarías.</p>
+        </li>
+        <li class="px-paso reveal">
+          <span class="px-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 15c-1.5 1.3-2 4-2 6 2 0 4.7-.5 6-2m-4-4 4 4m-4-4 1.5-4.5c1.4-4.1 5.3-7.2 9.6-7.9L21 2.6l-.1 3.4c-.7 4.3-3.8 8.2-7.9 9.6L9 17"/><circle cx="14" cy="9.5" r="1.5"/></svg></span>
+          <h3><b>4.</b> Entrega y acompañamiento</h3>
+          <p>Lo dejo funcionando y te enseño a usarlo a ti y a tu equipo.</p>
+        </li>
+      </ol>
+      <div class="px-soporte reveal">
+        <span class="px-escudo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.4 8.3 8 9 4.6-.7 8-4 8-9V6l-8-3Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg></span>
+        <strong>4 meses de <span>soporte gratuito</span></strong>
+        <p>Para resolver dudas y corregir errores atribuibles al desarrollo original. El mantenimiento y las funciones nuevas se contratan aparte.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="preguntas" class="faq">
-  <div class="container">
-    <p class="label reveal">Preguntas frecuentes</p>
-    <h2 class="reveal">Lo que suelen preguntarme</h2>
+<section class="sx-duo">
+  <div class="container duo-grid">
+  <div id="sobre-mi" class="duo-sobre reveal">
+    <div class="sobre-marca" aria-hidden="true"><img src="img/logo.png" alt="" loading="lazy" decoding="async"><span>IG<b>.</b> DIGITAL STUDIO</span></div>
+    <div class="sobre-texto">
+      <h2 class="sx-sub">Sobre <span>mí</span></h2>
+      <p>Soy Ignacio Garrido Martínez, tengo 20 años y estudio Desarrollo de Aplicaciones Multiplataforma (DAM), con una base sólida en Java, C# y SQL, y ahora programo a diario con .NET MAUI.</p>
+      <p>Soy desarrollador de aplicaciones en prácticas en Infosersistemas, en remoto, donde me encargo de las pruebas de las aplicaciones. También desarrollo por mi cuenta una aplicación de gestión para una peluquería, en C# y .NET MAUI, conectada a su web de reservas.</p>
+      <p>Me interesa crear software útil y fácil de usar, y acompañar al cliente desde la idea hasta que la herramienta funciona en su día a día. Mi objetivo a medio plazo es especializarme en ciberseguridad e inteligencia artificial.</p>
+      <div class="sobre-chips" aria-label="Perfil y tecnologías">
+        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5L2 9Z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg> DAM</span>
+        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></svg> C# · Java · SQL</span>
+        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 4.5-9 4.5-9-4.5L12 3Z"/><path d="m3 12 9 4.5 9-4.5"/></svg> Software útil</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="preguntas" class="duo-faq">
+    <h2 class="sx-sub reveal">Preguntas <span>frecuentes</span></h2>
     <div class="faq-list">
       <details class="faq-item reveal">
         <summary>¿Cuánto tardas en hacer una web o una app?</summary>
@@ -1020,55 +1024,58 @@ button:disabled{cursor:not-allowed}
       </details>
     </div>
   </div>
+  </div>
 </section>
 
-<section class="cta-band">
+<section class="sx-cta">
   <div class="container">
-    <div class="cta-box reveal">
-      <h2>¿Tu negocio sigue funcionando con libretas y hojas de Excel?</h2>
-      <p>Cuéntame cómo trabajas y te digo qué se puede automatizar. La primera reunión no cuesta nada y no te compromete a nada.</p>
-      <div class="btn-row cta-buttons">
-        <a class="btn btn-primary" href="#contacto">Hablemos de tu proyecto</a>
-        <a class="btn btn-ghost" href="https://wa.me/34640169734?text=Hola%2C%20te%20he%20visto%20por%20la%20web%20y%20me%20gustar%C3%ADa%20hacer%20un%20proyecto%20contigo." target="_blank" rel="noopener">Escríbeme por WhatsApp</a>
+    <div class="cta-franja reveal">
+      <span class="cta-ico" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="5" y="9" width="30" height="30" rx="4"/><path d="M5 18h30M5 27h30M15 9v30M25 9v30"/><circle cx="36" cy="35" r="8" class="cta-x-bg"/><path d="m33 32 6 6m0-6-6 6" class="cta-x"/></svg></span>
+      <h2>¿Tu negocio sigue funcionando con <span>libretas y hojas de Excel?</span></h2>
+      <div class="cta-lado">
+        <p>Cuéntame cómo trabajas y te digo qué se puede automatizar. La primera reunión no cuesta nada y no te compromete a nada.</p>
+        <a class="btn btn-primary cta-btn" href="#contacto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4 20-7Z"/><path d="M22 2 11 13"/></svg> Hablemos de tu proyecto</a>
       </div>
     </div>
   </div>
 </section>
 
-<section id="contacto">
-  <div class="container">
-    <div class="contact-box reveal">
-      <h2>¿Tienes un proyecto en mente?</h2>
-      <p>Cuéntame qué necesitas y te respondo en menos de 24 horas.</p>
-      <form id="form-contacto" class="contact-form" aria-label="Formulario de contacto">
-        <label class="sr-only" for="contacto-nombre">Tu nombre</label>
-        <input id="contacto-nombre" type="text" name="nombre" placeholder="Tu nombre" autocomplete="name" required>
-        <label class="sr-only" for="contacto-email">Tu correo electrónico</label>
-        <input id="contacto-email" type="email" name="email" placeholder="Tu email, para poder responderte" autocomplete="email" required>
-        <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <label class="sr-only" for="contacto-tipo">¿Qué necesitas?</label>
-        <select id="contacto-tipo" name="tipo" required>
-          <option value="">¿Qué necesitas?</option>
-          <option>Una aplicación de gestión</option>
-          <option>Una web o reservas online</option>
-          <option>Mantenimiento o mejoras</option>
-          <option>Otro</option>
-        </select>
-        <label class="sr-only" for="contacto-mensaje">Cuéntame tu idea</label>
-        <textarea id="contacto-mensaje" name="mensaje" rows="4" placeholder="Cuéntame tu idea" required></textarea>
-        <label class="privacy-check"><input type="checkbox" required> <span>He leído y acepto la <a href="#privacidad">política de privacidad</a>.</span></label>
-        <button class="btn btn-primary" type="submit">Enviar</button>
-        <p class="hint" id="contacto-status" role="status" aria-live="polite" aria-atomic="true">Te respondo en menos de 24 horas al email que me dejes.</p>
-      </form>
-      </div>
-      <div class="contact-box links-box">
-        <div class="links">
-        <a class="btn btn-primary" href="https://wa.me/34640169734?text=Hola%2C%20te%20he%20visto%20por%20la%20web%20y%20me%20gustar%C3%ADa%20hacer%20un%20proyecto%20contigo." target="_blank" rel="noopener">WhatsApp</a>
-        <a class="btn btn-ghost" href="mailto:ignaciog2006@gmail.com">Escribirme por email</a>
-        <a class="btn btn-ghost" href="https://www.malt.com/profile/ignaciogarrido" target="_blank" rel="noopener">Malt</a>
-        <a class="btn btn-ghost" href="https://github.com/Ignacio25-eng" target="_blank" rel="noopener">GitHub</a>
+<section id="contacto" class="sx-contacto">
+  <div class="container contacto-grid">
+    <div class="contacto-texto reveal">
+      <h2>¿Tienes un <span>proyecto en mente?</span></h2>
+      <p>Cuéntame tu idea y te respondo en un plazo máximo de 48 horas laborables.</p>
+      <div class="canales">
+        <a class="canal" href="https://wa.me/34640169734?text=Hola%2C%20te%20he%20visto%20por%20la%20web%20y%20me%20gustar%C3%ADa%20hacer%20un%20proyecto%20contigo." target="_blank" rel="noopener"><svg class="c-wa" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C22 6.45 17.5 2 12.04 2zm4.52 11.99c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>WhatsApp</a>
+        <a class="canal" href="mailto:ignaciog2006@gmail.com"><svg class="c-linea" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email</a>
+        <a class="canal" href="https://www.malt.com/profile/ignaciogarrido" target="_blank" rel="noopener"><span class="c-malt" aria-hidden="true">M</span>Malt</a>
+        <a class="canal" href="https://github.com/Ignacio25-eng" target="_blank" rel="noopener"><svg class="c-gh" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>GitHub</a>
       </div>
     </div>
+    <form id="form-contacto" class="contact-form contacto-form reveal" aria-label="Formulario de contacto">
+      <div class="form-fila">
+        <div><label class="sr-only" for="contacto-nombre">Tu nombre</label>
+        <input id="contacto-nombre" type="text" name="nombre" placeholder="Tu nombre *" autocomplete="name" required></div>
+        <div><label class="sr-only" for="contacto-email">Tu correo electrónico</label>
+        <input id="contacto-email" type="email" name="email" placeholder="Tu email *" autocomplete="email" required></div>
+      </div>
+      <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="sr-only" for="contacto-tipo">¿Qué necesitas?</label>
+      <select id="contacto-tipo" name="tipo" required>
+        <option value="">¿Qué necesitas? *</option>
+        <option>Una aplicación de gestión</option>
+        <option>Una web o reservas online</option>
+        <option>Mantenimiento o mejoras</option>
+        <option>Otro</option>
+      </select>
+      <label class="sr-only" for="contacto-mensaje">Cuéntame tu idea</label>
+      <textarea id="contacto-mensaje" name="mensaje" rows="5" placeholder="Cuéntame tu proyecto… *" required></textarea>
+      <div class="form-pie">
+        <label class="privacy-check"><input type="checkbox" required> <span>He leído y acepto la <a href="#privacidad">política de privacidad</a>.</span></label>
+        <button class="btn btn-primary form-enviar" type="submit">Enviar mensaje</button>
+      </div>
+      <p class="hint" id="contacto-status" role="status" aria-live="polite" aria-atomic="true">Te respondo en un plazo máximo de 48 horas laborables al email que me dejes.</p>
+    </form>
   </div>
 </section>
 
@@ -1136,11 +1143,11 @@ button:disabled{cursor:not-allowed}
   </div>
 </div>
 
-<footer>
-  <div class="container footer-brand">
-    <img class="footer-logo" src="img/logo.png" alt="" aria-hidden="true">
-    <p>© 2026 Ignacio Garrido Martínez. Todos los derechos reservados.</p>
-    <p class="legal-links"><a href="#aviso-legal">Aviso legal</a> · <a href="#privacidad">Política de privacidad</a> · <a href="condiciones-generales.html">Condiciones del servicio</a></p>
+<footer class="sx-pie">
+  <div class="container pie-fila">
+    <a class="pie-marca" href="#inicio" aria-label="Volver al inicio"><img class="footer-logo" src="img/logo.png" alt="" aria-hidden="true"><span>IG<b>.</b> <small>DIGITAL STUDIO</small></span></a>
+    <nav class="pie-legal" aria-label="Información legal"><a href="#aviso-legal">Aviso legal</a><a href="#privacidad">Política de privacidad</a><a href="condiciones-generales.html">Condiciones del servicio</a></nav>
+    <p class="pie-copy">© 2026 Ignacio Garrido Martínez. Todos los derechos reservados.</p>
   </div>
 </footer>
 
@@ -1287,7 +1294,7 @@ button:disabled{cursor:not-allowed}
     '<p>Si ya tienes una web o una app y no sabes por dónde empezar, cuéntame qué te pasa y lo vemos juntos, sin compromiso.</p>'
   ];
   const svcModal = document.getElementById('servicio-modal');
-  document.querySelectorAll('#servicios .card').forEach((card, i) => {
+  document.querySelectorAll('#servicios .svc').forEach((card, i) => {
     makeClickable(card, { dialogId: 'servicio-modal' });
     card.addEventListener('click', () => {
       svcModal.querySelector('.pcontent').innerHTML = details[i];
@@ -1338,7 +1345,7 @@ button:disabled{cursor:not-allowed}
       Email: d.get('email'),
       'Qué necesita': d.get('tipo'),
       Mensaje: d.get('mensaje')
-    }, '¡Gracias! Tu mensaje me ha llegado. Te respondo en menos de 24 horas.', 'Enviar');
+    }, '¡Gracias! Tu mensaje me ha llegado. Te respondo en un plazo máximo de 48 horas laborables.', 'Enviar mensaje');
   });
 
 </script>
