@@ -198,6 +198,23 @@ main#contenido { position: relative; }
 .fe-2 { top: 10px; right: 10px; border-top-width: 2px; border-right-width: 2px; border-top-right-radius: 6px; }
 .fe-3 { bottom: 52px; left: 10px; border-bottom-width: 2px; border-left-width: 2px; border-bottom-left-radius: 6px; }
 .fe-4 { bottom: 52px; right: 10px; border-bottom-width: 2px; border-right-width: 2px; border-bottom-right-radius: 6px; }
+/* Con la foto real del setup: la foto (apaisada) va a todo el ancho de la tarjeta, encima del texto */
+.duo-sobre--foto { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+.duo-sobre--foto .sobre-foto { position: relative; top: auto; aspect-ratio: 16 / 10; border-radius: 16px; border-color: rgba(245, 158, 11, .3);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .35); }
+.sobre-foto.con-foto picture { position: absolute; inset: 0; }
+/* En reposo sin transformar (con una transformación permanente, algunos equipos sin aceleración gráfica no la pintan);
+   el zoom suave solo existe al pasar el ratón */
+.sobre-foto.con-foto picture img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; transition: transform 1.4s var(--ig-suave); }
+@media (hover: hover) and (pointer: fine) {
+  .duo-sobre--foto:hover .sobre-foto picture img { transform: scale(1.04); }
+}
+.sobre-foto.con-foto figcaption { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; display: flex; justify-content: space-between; align-items: baseline;
+  flex-wrap: wrap; gap: 4px 12px; padding: 40px 20px 15px; border-top: 0; background: linear-gradient(180deg, transparent, rgba(8, 6, 14, .9)); }
+.foto-firma { color: #F3EEF9; font-weight: 700; font-size: .86rem; }
+.foto-lugar { color: #FBC45E; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.sobre-foto.con-foto .foto-esquina { z-index: 3; }
+.sobre-foto.con-foto .fe-3, .sobre-foto.con-foto .fe-4 { bottom: 10px; }
 .sobre-confianza { list-style: none; margin: 20px 0 0; padding: 18px 0 0; display: grid; gap: 12px; border-top: 1px solid var(--ig-linea); }
 .sobre-confianza li { position: relative; display: grid; gap: 1px; padding-left: 32px; }
 .sobre-confianza li::before { content: "✓"; position: absolute; left: 0; top: 2px; width: 21px; height: 21px; display: grid; place-items: center; border-radius: 50%;
@@ -263,6 +280,48 @@ main#contenido { position: relative; }
   .demo-pasos { grid-template-columns: minmax(0, 1fr); }
 }
 
+/* ── 12 · Capturas: WebP en <picture> y visor en la misma página ─────── */
+img.shot { height: auto; }                        /* las capturas llevan width/height reales: que no se estiren */
+.p-frame picture, .gallery picture, .pcontent picture { display: block; }
+#proyecto-modal .pcontent img.shot, a.ver-captura { cursor: zoom-in; }
+a.ver-captura { position: relative; display: block; }
+a.ver-captura::after { content: "⤢"; position: absolute; right: 10px; bottom: 10px; width: 34px; height: 34px; display: grid; place-items: center;
+  border-radius: 50%; font-size: 1rem; color: #fff; background: rgba(12, 9, 20, .78); border: 1px solid rgba(255, 255, 255, .2);
+  opacity: 0; transform: scale(.85); transition: opacity .25s, transform .25s var(--ig-suave); }
+a.ver-captura:hover::after, a.ver-captura:focus-visible::after { opacity: 1; transform: none; }
+
+.visor { position: fixed; inset: 0; z-index: 300; display: grid; place-items: center; padding: 64px 72px 28px;
+  background: rgba(6, 4, 12, .94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  opacity: 0; transition: opacity .25s ease; }
+.visor[hidden] { display: none; }
+.visor.abierto { opacity: 1; }
+.visor-marco { margin: 0; max-width: min(1500px, 100%); max-height: 100%; display: flex; flex-direction: column; align-items: center; gap: 12px;
+  transform: scale(.97); transition: transform .3s var(--ig-suave); }
+.visor.abierto .visor-marco { transform: none; }
+.visor-marco picture { display: block; min-height: 0; }
+.visor-marco img { display: block; max-width: 100%; max-height: calc(100vh - 150px); max-height: calc(100dvh - 150px); width: auto; height: auto;
+  border-radius: 12px; border: 1px solid rgba(255, 255, 255, .12); box-shadow: 0 30px 80px rgba(0, 0, 0, .6); background: #0D0A16; }
+.visor-marco figcaption { display: flex; gap: 14px; align-items: baseline; justify-content: center; flex-wrap: wrap; color: #D9D2E5; font-size: .9rem; text-align: center; }
+.visor-cuenta { color: var(--ig-naranja-claro); font-weight: 700; font-size: .82rem; }
+.visor-cerrar { position: absolute; top: 14px; right: 16px; width: 46px; height: 46px; display: grid; place-items: center; border-radius: 50%; cursor: pointer;
+  font-size: 1.9rem; line-height: 1; color: #fff; background: rgba(30, 23, 46, .95); border: 1px solid rgba(255, 255, 255, .22);
+  transition: background .2s, border-color .2s, transform .25s var(--ig-suave); }
+.visor-cerrar:hover { background: var(--ig-naranja); border-color: var(--ig-naranja); color: #1B1204; transform: rotate(90deg); }
+.visor-nav { position: absolute; top: 50%; translate: 0 -50%; width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; cursor: pointer;
+  font-size: 2rem; line-height: 1; color: #fff; background: rgba(30, 23, 46, .9); border: 1px solid rgba(255, 255, 255, .18); transition: background .2s, border-color .2s; }
+.visor-nav:hover { background: rgba(245, 158, 11, .9); border-color: var(--ig-naranja); color: #1B1204; }
+.visor-ant { left: 14px; }
+.visor-sig { right: 14px; }
+.visor.solo-una .visor-nav { display: none; }
+@media (max-width: 640px) {
+  .visor { padding: 64px 10px 20px; }
+  .visor-nav { top: auto; bottom: 18px; translate: none; width: 44px; height: 44px; }
+  .visor-ant { left: 12px; }
+  .visor-sig { right: 12px; }
+  .visor-marco { padding-bottom: 56px; }
+  .visor-marco figcaption { font-size: .82rem; }
+}
+
 /* ── 11 · Reducir movimiento: todo terminado y quieto ─────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .demo-web, .demo-etiqueta, .demo-pasos, .demo-etiqueta i { animation: none !important; }
@@ -272,4 +331,5 @@ main#contenido { position: relative; }
   .sx-titulo::after { transform: scaleX(1); }
   .hilo-nodo.on { animation: none; }
   .p-frame::after { display: none; }
+  .visor, .visor-marco, .visor-cerrar { transition: none !important; }
 }
