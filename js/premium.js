@@ -151,3 +151,100 @@
   if ('ResizeObserver' in window) new ResizeObserver(reconstruir).observe(main);
   construir();
 })();
+
+// ════════════════════════════════════════════════════════════════════════
+//  VISOR DE CAPTURAS: las capturas se amplían en la misma página (sin abrir otra pestaña),
+//  con una X arriba a la derecha para salir. También: Escape o pinchar fuera para cerrar,
+//  flechas ← → para pasar de una a otra, y el foco del teclado se queda dentro mientras está abierto.
+// ════════════════════════════════════════════════════════════════════════
+(() => {
+  const visor = document.createElement('div');
+  visor.className = 'visor';
+  visor.setAttribute('role', 'dialog');
+  visor.setAttribute('aria-modal', 'true');
+  visor.setAttribute('aria-label', 'Captura ampliada');
+  visor.hidden = true;
+  visor.innerHTML =
+    '<button type="button" class="visor-cerrar" aria-label="Cerrar la captura">×</button>' +
+    '<button type="button" class="visor-nav visor-ant" aria-label="Captura anterior">‹</button>' +
+    '<figure class="visor-marco"><picture><source type="image/webp"><img alt=""></picture>' +
+    '<figcaption><span class="visor-texto"></span><span class="visor-cuenta"></span></figcaption></figure>' +
+    '<button type="button" class="visor-nav visor-sig" aria-label="Captura siguiente">›</button>';
+  document.body.appendChild(visor);
+
+  const fuente = visor.querySelector('source');
+  const img = visor.querySelector('img');
+  const texto = visor.querySelector('.visor-texto');
+  const cuenta = visor.querySelector('.visor-cuenta');
+  const btnCerrar = visor.querySelector('.visor-cerrar');
+  let grupo = [], actual = 0, focoAnterior = null, bloqueoPropio = false;
+
+  // Cada captura del grupo: { jpg, webp, alt }
+  const datosDe = (el) => {
+    const im = el.tagName === 'IMG' ? el : el.querySelector('img');
+    const jpg = el.getAttribute('href') || (im && im.getAttribute('src'));
+    return { jpg, webp: jpg.replace(/\.jpg$/i, '.webp'), alt: (im && im.alt) || 'Captura del proyecto' };
+  };
+
+  const mostrar = (i) => {
+    actual = (i + grupo.length) % grupo.length;
+    const c = grupo[actual];
+    fuente.srcset = c.webp;
+    img.src = c.jpg;
+    img.alt = c.alt;
+    texto.textContent = c.alt;
+    cuenta.textContent = grupo.length > 1 ? `${actual + 1} / ${grupo.length}` : '';
+    visor.classList.toggle('solo-una', grupo.length < 2);
+  };
+
+  const abrir = (lista, i) => {
+    grupo = lista.map(datosDe);
+    focoAnterior = document.activeElement;
+    mostrar(i);
+    visor.hidden = false;
+    requestAnimationFrame(() => visor.classList.add('abierto'));
+    // Si no hay otra ventana debajo que ya bloquee el scroll, lo bloquea el visor
+    bloqueoPropio = document.body.style.overflow !== 'hidden';
+    if (bloqueoPropio) document.body.style.overflow = 'hidden';
+    btnCerrar.focus();
+  };
+
+  const cerrar = () => {
+    visor.classList.remove('abierto');
+    visor.hidden = true;
+    img.removeAttribute('src');
+    if (bloqueoPropio) document.body.style.overflow = '';
+    if (focoAnterior && focoAnterior.focus) focoAnterior.focus();
+  };
+
+  // Qué abre el visor: las miniaturas de la galería y la captura grande de la ventana del proyecto
+  document.addEventListener('click', (e) => {
+    const disparador = e.target.closest('a.ver-captura, #proyecto-modal .pcontent img.shot');
+    if (!disparador) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const caja = disparador.closest('.pbox') || document;
+    const lista = [...caja.querySelectorAll('.pcontent img.shot, a.ver-captura')];
+    abrir(lista, Math.max(0, lista.indexOf(disparador)));
+  }, true);
+
+  btnCerrar.addEventListener('click', cerrar);
+  visor.querySelector('.visor-ant').addEventListener('click', () => mostrar(actual - 1));
+  visor.querySelector('.visor-sig').addEventListener('click', () => mostrar(actual + 1));
+  visor.addEventListener('click', (e) => { if (e.target === visor) cerrar(); });   // pinchar fuera de la imagen
+
+  // Teclado: va antes que el resto de la página para que Escape cierre solo la captura, no la ventana de debajo
+  window.addEventListener('keydown', (e) => {
+    if (visor.hidden) return;
+    if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); cerrar(); }
+    else if (e.key === 'ArrowLeft' && grupo.length > 1) { e.preventDefault(); mostrar(actual - 1); }
+    else if (e.key === 'ArrowRight' && grupo.length > 1) { e.preventDefault(); mostrar(actual + 1); }
+    else if (e.key === 'Tab') {
+      const botones = [...visor.querySelectorAll('button')].filter((b) => b.offsetParent !== null);
+      const i = botones.indexOf(document.activeElement);
+      e.preventDefault();
+      e.stopPropagation();
+      botones[(i + (e.shiftKey ? -1 : 1) + botones.length) % botones.length].focus();
+    }
+  }, true);
+})();
